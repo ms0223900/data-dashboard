@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Generate designs/course-student-dashboard.pen from HTML design refs + Notion notes."""
+"""Generate one .pen per dashboard screen (matches docs/design/ref HTML).
+
+Outputs:
+  designs/dashboard-screen-1.pen  — Dashboard 首頁（+ Mobile）
+  designs/dashboard-screen-2.pen  — 章節進度與作品完成狀態
+  designs/dashboard-screen-3.pen  — 學員列表與篩選（預設／MVP／空狀態／Mobile）
+"""
 
 from __future__ import annotations
 
@@ -7,7 +13,12 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "designs" / "course-student-dashboard.pen"
+DESIGNS = ROOT / "designs"
+OUT_FILES = {
+    1: DESIGNS / "dashboard-screen-1.pen",
+    2: DESIGNS / "dashboard-screen-2.pen",
+    3: DESIGNS / "dashboard-screen-3.pen",
+}
 
 # HTML design tokens (docs/design/ref/*.html)
 C = {
@@ -31,6 +42,11 @@ C = {
 
 FONT = "Inter"
 _id = 0
+
+
+def reset_ids() -> None:
+    global _id
+    _id = 0
 
 
 def nid(prefix: str = "n") -> str:
@@ -362,38 +378,30 @@ def table_row(s: tuple) -> dict:
     )
 
 
-def build_cover(x: int, y: int) -> dict:
+def build_screen_label(
+    x: int,
+    y: int,
+    *,
+    screen_no: int,
+    title: str,
+    html_ref: str,
+    notes: list[str],
+) -> dict:
     return frame(
-        "00 設計稿說明｜Cover",
+        f"00 Screen {screen_no}｜說明",
         [
-            text("課程學員數據儀表板", size=28, weight="700", fill=C["text"]),
-            text("Pencil 設計稿｜依 Notion 筆記 + HTML 參考稿重建", size=14, fill=C["muted"]),
-            text("來源：docs/design/ref/dashboard-screen-{1,2,3}.html", size=12, fill=C["muted"]),
-            frame(
-                "Tokens",
-                [
-                    frame("c1", [rect(16, 16, C["blue"], radius=4), text("藍＝操作焦點", size=12, fill=C["muted"])], layout="horizontal", gap=8, align="center"),
-                    frame("c2", [rect(16, 16, C["green"], radius=4), text("綠＝完成／發布", size=12, fill=C["muted"])], layout="horizontal", gap=8, align="center"),
-                    frame("c3", [rect(16, 16, C["orange"], radius=4), text("橘＝Demo／需注意", size=12, fill=C["muted"])], layout="horizontal", gap=8, align="center"),
-                ],
-                layout="vertical",
-                gap=8,
-                padding=16,
-                fill=C["soft"],
-                radius=12,
-                stroke_color=C["border"],
-                width="fill_container",
-            ),
-            text("畫面：Dashboard 首頁 → 章節進度細節 → 學員列表（預設／已完成 MVP／空狀態）→ Mobile", size=12, fill=C["text"], width=640),
-            text("MVP 核心問題：有沒有開始學、完成到哪裡、有沒有做出作品", size=13, weight="600", fill=C["blue"], width=640),
+            text(f"畫面 {screen_no}｜{title}", size=22, weight="700", fill=C["text"]),
+            text(f"HTML 參考：docs/design/ref/{html_ref}", size=13, fill=C["muted"]),
+            text(f"Pencil：designs/dashboard-screen-{screen_no}.pen ↔ 實作時一檔一畫面", size=12, fill=C["muted"]),
+            *[text(f"• {n}", size=13, fill=C["text"], width=520) for n in notes],
         ],
         layout="vertical",
-        width=720,
-        height=420,
-        gap=14,
-        padding=32,
+        width=560,
+        height=220,
+        gap=10,
+        padding=24,
         fill=C["canvas"],
-        radius=16,
+        radius=14,
         stroke_color=C["border"],
         x=x,
         y=y,
@@ -1046,59 +1054,115 @@ def build_mobile_list(x: int, y: int) -> dict:
     )
 
 
-def main() -> None:
-    mvp_rows = [s for s in STUDENTS if s[5] == "已完成 MVP"]
-    doc = {
-        "version": "2.6",
-        "children": [
-            build_cover(0, 0),
-            build_dashboard(800, 0),
-            build_chapter_screen(2000, 0),
-            build_student_list(
-                0,
-                1100,
-                title_suffix="預設 Desktop",
-                learn_val="全部",
-                work_val="全部",
-                progress_val="全部",
-                rows=STUDENTS[:6],
-                height=780,
-            ),
-            build_student_list(
-                1160,
-                1100,
-                title_suffix="已完成 MVP 篩選",
-                learn_val="全部",
-                work_val="已完成 MVP",
-                progress_val="全部",
-                rows=mvp_rows,
-                height=620,
-            ),
-            build_student_list(
-                2320,
-                1100,
-                title_suffix="空狀態",
-                learn_val="近期未活動",
-                work_val="已發布",
-                progress_val="76–100%",
-                rows=[],
-                empty=True,
-                height=520,
-            ),
-            build_mobile_dashboard(0, 2000),
-            build_mobile_list(450, 2000),
-        ],
-    }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    # Valid JSON only — no prefix characters (previous file was corrupted with leading "p")
-    OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    # Validate
-    parsed = json.loads(OUT.read_text(encoding="utf-8"))
+def write_pen(path: Path, children: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # Valid JSON only — never prefix with non-JSON characters
+    doc = {"version": "2.6", "children": children}
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    parsed = json.loads(path.read_text(encoding="utf-8"))
     assert parsed["version"] == "2.6"
-    assert len(parsed["children"]) == 8
-    print(f"Wrote {OUT} ({OUT.stat().st_size} bytes)")
+    assert parsed["children"]
+    print(f"Wrote {path.relative_to(ROOT)} ({path.stat().st_size} bytes)")
     for c in parsed["children"]:
         print(f"  - {c['name']} @ ({c['x']},{c['y']}) {c['width']}x{c['height']}")
+
+
+def build_screen_1() -> list[dict]:
+    reset_ids()
+    return [
+        build_screen_label(
+            0,
+            0,
+            screen_no=1,
+            title="Dashboard 首頁總覽",
+            html_ref="dashboard-screen-1.html",
+            notes=[
+                "KPI、章節進度、作品狀態、學員列表入口",
+                "同一組假資料；清楚標示 Demo／假資料版",
+            ],
+        ),
+        build_dashboard(0, 280),
+        build_mobile_dashboard(1200, 280),
+    ]
+
+
+def build_screen_2() -> list[dict]:
+    reset_ids()
+    return [
+        build_screen_label(
+            0,
+            0,
+            screen_no=2,
+            title="章節進度與作品完成狀態",
+            html_ref="dashboard-screen-2.html",
+            notes=[
+                "章節完成人數／完成率＋作品狀態比例",
+                "含資料解讀提示（Spec → Build Sprint 落差）",
+            ],
+        ),
+        build_chapter_screen(0, 280),
+    ]
+
+
+def build_screen_3() -> list[dict]:
+    reset_ids()
+    mvp_rows = [s for s in STUDENTS if s[5] == "已完成 MVP"]
+    return [
+        build_screen_label(
+            0,
+            0,
+            screen_no=3,
+            title="學員列表與互動篩選",
+            html_ref="dashboard-screen-3.html",
+            notes=[
+                "學習／作品／進度篩選、重設、空狀態",
+                "本檔含：預設、已完成 MVP、空狀態、Mobile",
+            ],
+        ),
+        build_student_list(
+            0,
+            280,
+            title_suffix="預設 Desktop",
+            learn_val="全部",
+            work_val="全部",
+            progress_val="全部",
+            rows=STUDENTS[:6],
+            height=780,
+        ),
+        build_student_list(
+            1160,
+            280,
+            title_suffix="已完成 MVP 篩選",
+            learn_val="全部",
+            work_val="已完成 MVP",
+            progress_val="全部",
+            rows=mvp_rows,
+            height=620,
+        ),
+        build_student_list(
+            2320,
+            280,
+            title_suffix="空狀態",
+            learn_val="近期未活動",
+            work_val="已發布",
+            progress_val="76–100%",
+            rows=[],
+            empty=True,
+            height=520,
+        ),
+        build_mobile_list(0, 1160),
+    ]
+
+
+def main() -> None:
+    write_pen(OUT_FILES[1], build_screen_1())
+    write_pen(OUT_FILES[2], build_screen_2())
+    write_pen(OUT_FILES[3], build_screen_3())
+
+    legacy = DESIGNS / "course-student-dashboard.pen"
+    if legacy.exists():
+        legacy.unlink()
+        print(f"Removed legacy {legacy.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

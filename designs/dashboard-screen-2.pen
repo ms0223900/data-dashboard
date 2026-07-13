@@ -1,0 +1,1193 @@
+{
+  "version": "2.6",
+  "children": [
+    {
+      "type": "frame",
+      "id": "f6",
+      "name": "00 Screen 2｜說明",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "text",
+          "id": "t1",
+          "name": "畫面 2｜章節進度與作品完成狀態",
+          "content": "畫面 2｜章節進度與作品完成狀態",
+          "fontFamily": "Inter",
+          "fontSize": 22,
+          "fontWeight": "700",
+          "fill": "#2C2C2B"
+        },
+        {
+          "type": "text",
+          "id": "t2",
+          "name": "HTML 參考：docs/design/ref/",
+          "content": "HTML 參考：docs/design/ref/dashboard-screen-2.html",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "normal",
+          "fill": "#7D7A75"
+        },
+        {
+          "type": "text",
+          "id": "t3",
+          "name": "Pencil：designs/dashboard",
+          "content": "Pencil：designs/dashboard-screen-2.pen ↔ 實作時一檔一畫面",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "fill": "#7D7A75"
+        },
+        {
+          "type": "text",
+          "id": "t4",
+          "name": "• 章節完成人數／完成率＋作品狀態比例",
+          "content": "• 章節完成人數／完成率＋作品狀態比例",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "normal",
+          "fill": "#2C2C2B",
+          "width": 520
+        },
+        {
+          "type": "text",
+          "id": "t5",
+          "name": "• 含資料解讀提示（Spec → Build S",
+          "content": "• 含資料解讀提示（Spec → Build Sprint 落差）",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "normal",
+          "fill": "#2C2C2B",
+          "width": 520
+        }
+      ],
+      "width": 560,
+      "height": 220,
+      "gap": 10,
+      "padding": 24,
+      "fill": "#FFFFFF",
+      "cornerRadius": 14,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E6E5E3"
+      },
+      "clip": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f101",
+      "name": "02 章節進度與作品完成狀態｜Desktop",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "f99",
+          "name": "Header",
+          "layout": "horizontal",
+          "children": [
+            {
+              "type": "frame",
+              "id": "f94",
+              "name": "Left",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f91",
+                  "name": "Demo Badge",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r89",
+                      "name": "dot",
+                      "width": 8,
+                      "height": 8,
+                      "fill": "#D5803B",
+                      "cornerRadius": 99
+                    },
+                    {
+                      "type": "text",
+                      "id": "t90",
+                      "name": "Demo／假資料版",
+                      "content": "Demo／假資料版",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "fill": "#D5803B"
+                    }
+                  ],
+                  "gap": 6,
+                  "padding": [
+                    5,
+                    12
+                  ],
+                  "fill": "#FBEBDE",
+                  "cornerRadius": 999,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t92",
+                  "name": "章節進度與作品完成狀態",
+                  "content": "章節進度與作品完成狀態",
+                  "fontFamily": "Inter",
+                  "fontSize": 36,
+                  "fontWeight": "700",
+                  "fill": "#2C2C2B"
+                },
+                {
+                  "type": "text",
+                  "id": "t93",
+                  "name": "協助管理者看出學員停留在哪個課程階段，並把「看課",
+                  "content": "協助管理者看出學員停留在哪個課程階段，並把「看課進度」和「實際做出作品」分開判斷。",
+                  "fontFamily": "Inter",
+                  "fontSize": 17,
+                  "fontWeight": "normal",
+                  "fill": "#7D7A75",
+                  "width": 660
+                }
+              ],
+              "width": "fill_container",
+              "gap": 12
+            },
+            {
+              "type": "frame",
+              "id": "f98",
+              "name": "關鍵落差卡",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t95",
+                  "name": "關鍵落差",
+                  "content": "關鍵落差",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "fill": "#7D7A75"
+                },
+                {
+                  "type": "text",
+                  "id": "t96",
+                  "name": "46%",
+                  "content": "46%",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": "700",
+                  "fill": "#2C2C2B"
+                },
+                {
+                  "type": "text",
+                  "id": "t97",
+                  "name": "已進入 Build Sprint；低於完成 Sp",
+                  "content": "已進入 Build Sprint；低於完成 Spec 的 73%",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal",
+                  "fill": "#7D7A75",
+                  "width": 200
+                }
+              ],
+              "width": 220,
+              "gap": 2,
+              "padding": 16,
+              "fill": "#FFFFFF",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E6E5E3"
+              }
+            }
+          ],
+          "width": "fill_container",
+          "gap": 24,
+          "justifyContent": "space_between",
+          "alignItems": "start"
+        },
+        {
+          "type": "frame",
+          "id": "f100",
+          "name": "Grid",
+          "layout": "horizontal",
+          "children": [
+            {
+              "type": "frame",
+              "id": "f46",
+              "name": "章節進度面板",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f9",
+                  "name": "panel title",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t7",
+                      "name": "章節進度分布",
+                      "content": "章節進度分布",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700",
+                      "fill": "#2C2C2B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t8",
+                      "name": "完成率以 48 位學員計算",
+                      "content": "完成率以 48 位學員計算",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75"
+                    }
+                  ],
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "end"
+                },
+                {
+                  "type": "frame",
+                  "id": "f14",
+                  "name": "Chapter 想法收斂",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t10",
+                      "name": "想法收斂",
+                      "content": "想法收斂",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600",
+                      "fill": "#2C2C2B",
+                      "width": 132
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f12",
+                      "name": "Track",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r11",
+                          "name": "fill",
+                          "width": 316,
+                          "height": 18,
+                          "fill": "#2783DE",
+                          "cornerRadius": 99
+                        }
+                      ],
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "clip": true
+                    },
+                    {
+                      "type": "text",
+                      "id": "t13",
+                      "name": "42／48 · 88%",
+                      "content": "42／48 · 88%",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75",
+                      "width": 92
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f19",
+                  "name": "Chapter Spec",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t15",
+                      "name": "Spec",
+                      "content": "Spec",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600",
+                      "fill": "#2C2C2B",
+                      "width": 132
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f17",
+                      "name": "Track",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r16",
+                          "name": "fill",
+                          "width": 262,
+                          "height": 18,
+                          "fill": "#2783DE",
+                          "cornerRadius": 99
+                        }
+                      ],
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "clip": true
+                    },
+                    {
+                      "type": "text",
+                      "id": "t18",
+                      "name": "35／48 · 73%",
+                      "content": "35／48 · 73%",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75",
+                      "width": 92
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f24",
+                  "name": "Chapter User Stories",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t20",
+                      "name": "User Stories",
+                      "content": "User Stories",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600",
+                      "fill": "#2C2C2B",
+                      "width": 132
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f22",
+                      "name": "Track",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r21",
+                          "name": "fill",
+                          "width": 234,
+                          "height": 18,
+                          "fill": "#2783DE",
+                          "cornerRadius": 99
+                        }
+                      ],
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "clip": true
+                    },
+                    {
+                      "type": "text",
+                      "id": "t23",
+                      "name": "31／48 · 65%",
+                      "content": "31／48 · 65%",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75",
+                      "width": 92
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f29",
+                  "name": "Chapter Build Sprint",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t25",
+                      "name": "Build Sprint",
+                      "content": "Build Sprint",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600",
+                      "fill": "#2C2C2B",
+                      "width": 132
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f27",
+                      "name": "Track",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r26",
+                          "name": "fill",
+                          "width": 165,
+                          "height": 18,
+                          "fill": "#D5803B",
+                          "cornerRadius": 99
+                        }
+                      ],
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "clip": true
+                    },
+                    {
+                      "type": "text",
+                      "id": "t28",
+                      "name": "22／48 · 46%",
+                      "content": "22／48 · 46%",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75",
+                      "width": 92
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f34",
+                  "name": "Chapter 驗收與修正",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t30",
+                      "name": "驗收與修正",
+                      "content": "驗收與修正",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600",
+                      "fill": "#2C2C2B",
+                      "width": 132
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f32",
+                      "name": "Track",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r31",
+                          "name": "fill",
+                          "width": 126,
+                          "height": 18,
+                          "fill": "#D5803B",
+                          "cornerRadius": 99
+                        }
+                      ],
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "clip": true
+                    },
+                    {
+                      "type": "text",
+                      "id": "t33",
+                      "name": "17／48 · 35%",
+                      "content": "17／48 · 35%",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75",
+                      "width": 92
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f39",
+                  "name": "Chapter 發布／延伸應用",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t35",
+                      "name": "發布／延伸應用",
+                      "content": "發布／延伸應用",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600",
+                      "fill": "#2C2C2B",
+                      "width": 132
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f37",
+                      "name": "Track",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r36",
+                          "name": "fill",
+                          "width": 68,
+                          "height": 18,
+                          "fill": "#A6A29B",
+                          "cornerRadius": 99
+                        }
+                      ],
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "clip": true
+                    },
+                    {
+                      "type": "text",
+                      "id": "t38",
+                      "name": "9／48 · 19%",
+                      "content": "9／48 · 19%",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75",
+                      "width": 92
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f45",
+                  "name": "資料解讀提示",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f41",
+                      "name": "i mark",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t40",
+                          "name": "i",
+                          "content": "i",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#FFFFFF"
+                        }
+                      ],
+                      "width": 34,
+                      "height": 34,
+                      "fill": "#2783DE",
+                      "cornerRadius": 10,
+                      "justifyContent": "center",
+                      "alignItems": "center"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f44",
+                      "name": "insight text",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t42",
+                          "name": "資料解讀提示",
+                          "content": "資料解讀提示",
+                          "fontFamily": "Inter",
+                          "fontSize": 17,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t43",
+                          "name": "最多學員已完成 Spec，但進入 Build S",
+                          "content": "最多學員已完成 Spec，但進入 Build Sprint 的比例下降；後續可評估是否補充實作示範、除錯案例或 Sprint 範例。",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal",
+                          "fill": "#3F5F76",
+                          "width": 480
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 4
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 14,
+                  "padding": 18,
+                  "fill": "#E5F2FC",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#B7D6F3"
+                  },
+                  "alignItems": "start"
+                }
+              ],
+              "width": "fill_container",
+              "gap": 13,
+              "padding": 22,
+              "fill": "#FFFFFF",
+              "cornerRadius": 18,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E6E5E3"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "f88",
+              "name": "作品完成面板",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f49",
+                  "name": "panel title",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t47",
+                      "name": "作品完成狀態",
+                      "content": "作品完成狀態",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700",
+                      "fill": "#2C2C2B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t48",
+                      "name": "分辨是否真的產出作品",
+                      "content": "分辨是否真的產出作品",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal",
+                      "fill": "#7D7A75"
+                    }
+                  ],
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "end"
+                },
+                {
+                  "type": "frame",
+                  "id": "f56",
+                  "name": "WS 尚未開始",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f51",
+                      "name": "icon",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t50",
+                          "name": "0",
+                          "content": "0",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        }
+                      ],
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 12,
+                      "justifyContent": "center",
+                      "alignItems": "center"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f54",
+                      "name": "meta",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t52",
+                          "name": "尚未開始",
+                          "content": "尚未開始",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t53",
+                          "name": "12 人",
+                          "content": "12 人",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal",
+                          "fill": "#7D7A75"
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "t55",
+                      "name": "25%",
+                      "content": "25%",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700",
+                      "fill": "#2C2C2B"
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 12,
+                  "padding": 12,
+                  "fill": "#F9F8F7",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E6E5E3"
+                  },
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f63",
+                  "name": "WS Build Sprint 中",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f58",
+                      "name": "icon",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t57",
+                          "name": "B",
+                          "content": "B",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#8F4E1D"
+                        }
+                      ],
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#FBEBDE",
+                      "cornerRadius": 12,
+                      "justifyContent": "center",
+                      "alignItems": "center"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f61",
+                      "name": "meta",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t59",
+                          "name": "Build Sprint 中",
+                          "content": "Build Sprint 中",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t60",
+                          "name": "17 人",
+                          "content": "17 人",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal",
+                          "fill": "#7D7A75"
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "t62",
+                      "name": "35%",
+                      "content": "35%",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700",
+                      "fill": "#2C2C2B"
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 12,
+                  "padding": 12,
+                  "fill": "#F9F8F7",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E6E5E3"
+                  },
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f70",
+                  "name": "WS 已完成 MVP",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f65",
+                      "name": "icon",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t64",
+                          "name": "M",
+                          "content": "M",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#276747"
+                        }
+                      ],
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#E8F1EC",
+                      "cornerRadius": 12,
+                      "justifyContent": "center",
+                      "alignItems": "center"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f68",
+                      "name": "meta",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t66",
+                          "name": "已完成 MVP",
+                          "content": "已完成 MVP",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t67",
+                          "name": "11 人",
+                          "content": "11 人",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal",
+                          "fill": "#7D7A75"
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "t69",
+                      "name": "23%",
+                      "content": "23%",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700",
+                      "fill": "#2C2C2B"
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 12,
+                  "padding": 12,
+                  "fill": "#F9F8F7",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E6E5E3"
+                  },
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f77",
+                  "name": "WS 已發布",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f72",
+                      "name": "icon",
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t71",
+                          "name": "✓",
+                          "content": "✓",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#165E9F"
+                        }
+                      ],
+                      "width": 44,
+                      "height": 44,
+                      "fill": "#E5F2FC",
+                      "cornerRadius": 12,
+                      "justifyContent": "center",
+                      "alignItems": "center"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f75",
+                      "name": "meta",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t73",
+                          "name": "已發布",
+                          "content": "已發布",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t74",
+                          "name": "4 人",
+                          "content": "4 人",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal",
+                          "fill": "#7D7A75"
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "t76",
+                      "name": "8%",
+                      "content": "8%",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700",
+                      "fill": "#2C2C2B"
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 12,
+                  "padding": 12,
+                  "fill": "#F9F8F7",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#E6E5E3"
+                  },
+                  "alignItems": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "f87",
+                  "name": "teaching",
+                  "layout": "horizontal",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f80",
+                      "name": "p1",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t78",
+                          "name": "章節圖表",
+                          "content": "章節圖表",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t79",
+                          "name": "回答學員主要完成到哪裡。",
+                          "content": "回答學員主要完成到哪裡。",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "fill": "#7D7A75",
+                          "width": 140
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 4,
+                      "padding": 14,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 14,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E6E5E3"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f83",
+                      "name": "p2",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t81",
+                          "name": "作品狀態",
+                          "content": "作品狀態",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t82",
+                          "name": "回答是否真的做出作品。",
+                          "content": "回答是否真的做出作品。",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "fill": "#7D7A75",
+                          "width": 140
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 4,
+                      "padding": 14,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 14,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E6E5E3"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f86",
+                      "name": "p3",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t84",
+                          "name": "摘要提示",
+                          "content": "摘要提示",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700",
+                          "fill": "#2C2C2B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t85",
+                          "name": "只做可理解判斷，不進入複雜 BI。",
+                          "content": "只做可理解判斷，不進入複雜 BI。",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal",
+                          "fill": "#7D7A75",
+                          "width": 140
+                        }
+                      ],
+                      "width": "fill_container",
+                      "gap": 4,
+                      "padding": 14,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 14,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#E6E5E3"
+                      }
+                    }
+                  ],
+                  "width": "fill_container",
+                  "gap": 12
+                }
+              ],
+              "width": 380,
+              "gap": 12,
+              "padding": 22,
+              "fill": "#FFFFFF",
+              "cornerRadius": 18,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E6E5E3"
+              }
+            }
+          ],
+          "width": "fill_container",
+          "gap": 20
+        }
+      ],
+      "width": 1120,
+      "height": 920,
+      "gap": 24,
+      "padding": 32,
+      "fill": "#FFFFFF",
+      "clip": true,
+      "x": 0,
+      "y": 280
+    }
+  ]
+}

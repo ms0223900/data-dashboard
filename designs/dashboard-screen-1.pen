@@ -1,0 +1,1967 @@
+{
+  "version": "2.14",
+  "children": [
+    {
+      "type": "frame",
+      "id": "f6",
+      "x": 0,
+      "y": 0,
+      "name": "00 Screen 1｜說明",
+      "clip": true,
+      "width": 560,
+      "height": 220,
+      "fill": "#FFFFFF",
+      "cornerRadius": 14,
+      "stroke": "#E6E5E3",
+      "strokeWidth": 1,
+      "strokeAlignment": "inner",
+      "layout": "vertical",
+      "gap": 10,
+      "padding": 24,
+      "children": [
+        {
+          "type": "text",
+          "id": "t1",
+          "name": "畫面 1｜Dashboard 首頁總覽",
+          "fill": "#2C2C2B",
+          "content": "畫面 1｜Dashboard 首頁總覽",
+          "fontFamily": "Inter",
+          "fontSize": 22,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "t2",
+          "name": "HTML 參考：docs/design/ref/",
+          "fill": "#7D7A75",
+          "content": "HTML 參考：docs/design/ref/dashboard-screen-1.html",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "t3",
+          "name": "Pencil：designs/dashboard",
+          "fill": "#7D7A75",
+          "content": "Pencil：designs/dashboard-screen-1.pen ↔ 實作時一檔一畫面",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "t4",
+          "name": "• KPI、章節進度、作品狀態、學員列表入口",
+          "fill": "#2C2C2B",
+          "content": "• KPI、章節進度、作品狀態、學員列表入口",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "t5",
+          "name": "• 同一組假資料；清楚標示 Demo／假資料版",
+          "fill": "#2C2C2B",
+          "content": "• 同一組假資料；清楚標示 Demo／假資料版",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "f98",
+      "x": 0,
+      "y": 280,
+      "name": "01 Dashboard 首頁｜Desktop",
+      "clip": true,
+      "width": 1120,
+      "height": 980,
+      "fill": "#ffffffff",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        32,
+        24,
+        40,
+        24
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "f82",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f79",
+              "name": "Title Row",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t75",
+                  "name": "課程學員數據儀表板",
+                  "fill": "#2C2C2B",
+                  "content": "課程學員數據儀表板",
+                  "fontFamily": "Inter",
+                  "fontSize": 26,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "f78",
+                  "name": "Demo Badge",
+                  "fill": "#FBEBDE",
+                  "cornerRadius": 999,
+                  "gap": 6,
+                  "padding": [
+                    5,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r76",
+                      "name": "dot",
+                      "fill": "#D5803B",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "t77",
+                      "name": "Demo／假資料版",
+                      "fill": "#D5803B",
+                      "content": "Demo／假資料版",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t80",
+              "name": "觀察學員是否跟上課程，並完成自己的 MVP",
+              "fill": "#2C2C2B",
+              "content": "觀察學員是否跟上課程，並完成自己的 MVP",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "t81",
+              "name": "資料狀態：Mock data｜最後更新：2026",
+              "fill": "#7D7A75",
+              "content": "資料狀態：Mock data｜最後更新：2026/07/10",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f95",
+          "name": "KPI Grid",
+          "width": "fill_container",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f85",
+              "name": "KPI 總學員數",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 6,
+              "padding": [
+                18,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t83",
+                  "name": "總學員數",
+                  "fill": "#7D7A75",
+                  "content": "總學員數",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "t84",
+                  "name": "48",
+                  "fill": "#2C2C2B",
+                  "content": "48",
+                  "fontFamily": "Inter",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f88",
+              "name": "KPI 已開始學習",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 6,
+              "padding": [
+                18,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t86",
+                  "name": "已開始學習",
+                  "fill": "#7D7A75",
+                  "content": "已開始學習",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "t87",
+                  "name": "39",
+                  "fill": "#2783DE",
+                  "content": "39",
+                  "fontFamily": "Inter",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f91",
+              "name": "KPI 平均完成進度",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 6,
+              "padding": [
+                18,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t89",
+                  "name": "平均完成進度",
+                  "fill": "#7D7A75",
+                  "content": "平均完成進度",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "t90",
+                  "name": "56%",
+                  "fill": "#2783DE",
+                  "content": "56%",
+                  "fontFamily": "Inter",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f94",
+              "name": "KPI 作品完成率",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 6,
+              "padding": [
+                18,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t92",
+                  "name": "作品完成率",
+                  "fill": "#7D7A75",
+                  "content": "作品完成率",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "t93",
+                  "name": "31%",
+                  "fill": "#46A171",
+                  "content": "31%",
+                  "fontFamily": "Inter",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f96",
+          "name": "Charts Row",
+          "width": "fill_container",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f38",
+              "name": "章節進度分布",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t7",
+                  "name": "章節進度分布",
+                  "fill": "#2C2C2B",
+                  "content": "章節進度分布",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "f12",
+                  "name": "Bar 想法收斂",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t8",
+                      "name": "想法收斂",
+                      "fill": "#2C2C2B",
+                      "content": "想法收斂",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f10",
+                      "name": "Track",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 10,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r9",
+                          "name": "fill",
+                          "fill": "#2783DE",
+                          "width": 246,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t11",
+                      "name": "88%",
+                      "fill": "#2C2C2B",
+                      "content": "88%",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f17",
+                  "name": "Bar Spec",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t13",
+                      "name": "Spec",
+                      "fill": "#2C2C2B",
+                      "content": "Spec",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f15",
+                      "name": "Track",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 10,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r14",
+                          "name": "fill",
+                          "fill": "#2783DE",
+                          "width": 204,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t16",
+                      "name": "73%",
+                      "fill": "#2C2C2B",
+                      "content": "73%",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f22",
+                  "name": "Bar User Stories",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t18",
+                      "name": "User Stories",
+                      "fill": "#2C2C2B",
+                      "content": "User Stories",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f20",
+                      "name": "Track",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 10,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r19",
+                          "name": "fill",
+                          "fill": "#2783DE",
+                          "width": 182,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t21",
+                      "name": "65%",
+                      "fill": "#2C2C2B",
+                      "content": "65%",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f27",
+                  "name": "Bar Build Sprint",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t23",
+                      "name": "Build Sprint",
+                      "fill": "#2C2C2B",
+                      "content": "Build Sprint",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f25",
+                      "name": "Track",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 10,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r24",
+                          "name": "fill",
+                          "fill": "#2783DE",
+                          "width": 128,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t26",
+                      "name": "46%",
+                      "fill": "#2C2C2B",
+                      "content": "46%",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f32",
+                  "name": "Bar 驗收與修正",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t28",
+                      "name": "驗收與修正",
+                      "fill": "#2C2C2B",
+                      "content": "驗收與修正",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f30",
+                      "name": "Track",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 10,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r29",
+                          "name": "fill",
+                          "fill": "#2783DE",
+                          "width": 98,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t31",
+                      "name": "35%",
+                      "fill": "#2C2C2B",
+                      "content": "35%",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f37",
+                  "name": "Bar 發布／延伸應用",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t33",
+                      "name": "發布／延伸應用",
+                      "fill": "#2C2C2B",
+                      "content": "發布／延伸應用",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f35",
+                      "name": "Track",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 10,
+                      "fill": "#F0EFED",
+                      "cornerRadius": 99,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r34",
+                          "name": "fill",
+                          "fill": "#2783DE",
+                          "width": 53,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t36",
+                      "name": "19%",
+                      "fill": "#2C2C2B",
+                      "content": "19%",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f60",
+              "name": "作品完成狀態",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t39",
+                  "name": "作品完成狀態",
+                  "fill": "#2C2C2B",
+                  "content": "作品完成狀態",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "f44",
+                  "name": "Status 尚未開始",
+                  "width": "fill_container",
+                  "padding": [
+                    10,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f42",
+                      "name": "Left",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r40",
+                          "name": "dot",
+                          "fill": "#7D7A75",
+                          "width": 8,
+                          "height": 8
+                        },
+                        {
+                          "type": "text",
+                          "id": "t41",
+                          "name": "尚未開始",
+                          "fill": "#2C2C2B",
+                          "content": "尚未開始",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t43",
+                      "name": "12",
+                      "fill": "#2C2C2B",
+                      "content": "12",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f49",
+                  "name": "Status Build Sprint 中",
+                  "width": "fill_container",
+                  "padding": [
+                    10,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f47",
+                      "name": "Left",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r45",
+                          "name": "dot",
+                          "fill": "#D5803B",
+                          "width": 8,
+                          "height": 8
+                        },
+                        {
+                          "type": "text",
+                          "id": "t46",
+                          "name": "Build Sprint 中",
+                          "fill": "#2C2C2B",
+                          "content": "Build Sprint 中",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t48",
+                      "name": "17",
+                      "fill": "#2C2C2B",
+                      "content": "17",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f54",
+                  "name": "Status 已完成 MVP",
+                  "width": "fill_container",
+                  "padding": [
+                    10,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f52",
+                      "name": "Left",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r50",
+                          "name": "dot",
+                          "fill": "#2783DE",
+                          "width": 8,
+                          "height": 8
+                        },
+                        {
+                          "type": "text",
+                          "id": "t51",
+                          "name": "已完成 MVP",
+                          "fill": "#2C2C2B",
+                          "content": "已完成 MVP",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t53",
+                      "name": "11",
+                      "fill": "#2C2C2B",
+                      "content": "11",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f59",
+                  "name": "Status 已發布",
+                  "width": "fill_container",
+                  "padding": [
+                    10,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f57",
+                      "name": "Left",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 99,
+                          "id": "r55",
+                          "name": "dot",
+                          "fill": "#46A171",
+                          "width": 8,
+                          "height": 8
+                        },
+                        {
+                          "type": "text",
+                          "id": "t56",
+                          "name": "已發布",
+                          "fill": "#2C2C2B",
+                          "content": "已發布",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t58",
+                      "name": "4",
+                      "fill": "#2C2C2B",
+                      "content": "4",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f97",
+          "name": "Bottom Row",
+          "width": "fill_container",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f66",
+              "name": "課程學習成效摘要",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t61",
+                  "name": "課程學習成效摘要",
+                  "fill": "#2C2C2B",
+                  "content": "課程學習成效摘要",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "t62",
+                  "name": "• 已開始學習：39／48 人",
+                  "fill": "#2C2C2B",
+                  "content": "• 已開始學習：39／48 人",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "t63",
+                  "name": "• 平均完成進度：56%",
+                  "fill": "#2C2C2B",
+                  "content": "• 平均完成進度：56%",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "t64",
+                  "name": "• 已完成或發布作品：15 人",
+                  "fill": "#2C2C2B",
+                  "content": "• 已完成或發布作品：15 人",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "t65",
+                  "name": "• 建議聚焦：Build Sprint 支援",
+                  "fill": "#D5803B",
+                  "content": "• 建議聚焦：Build Sprint 支援",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f72",
+              "name": "學員列表入口",
+              "width": "fill_container",
+              "fill": "#E5F2FC",
+              "cornerRadius": 12,
+              "stroke": "#E6E5E3",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 20,
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f69",
+                  "name": "cta text",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t67",
+                      "name": "學員列表",
+                      "fill": "#2C2C2B",
+                      "content": "學員列表",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t68",
+                      "name": "從整體數字回到個別學員，篩選學習狀態、作品狀態與",
+                      "fill": "#7D7A75",
+                      "content": "從整體數字回到個別學員，篩選學習狀態、作品狀態與完成進度。",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f71",
+                  "name": "CTA btn",
+                  "fill": "#2783DE",
+                  "cornerRadius": 8,
+                  "padding": [
+                    11,
+                    18
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t70",
+                      "name": "查看與篩選學員 →",
+                      "fill": "#FFFFFF",
+                      "content": "查看與篩選學員 →",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f74",
+          "name": "教學展示重點",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": "#E6E5E3",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "padding": [
+            16,
+            20
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t73",
+              "name": "教學展示重點：首頁先回答三個問題──有沒有開始學",
+              "fill": "#7D7A75",
+              "content": "教學展示重點：首頁先回答三個問題──有沒有開始學、完成到哪裡、有沒有做出作品；KPI、章節進度與作品狀態皆來自同一組假資料；「Demo／假資料版」標示清楚可見。",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "f177",
+      "x": 1200,
+      "y": 280,
+      "name": "05 Dashboard｜Mobile 390",
+      "clip": true,
+      "width": 390,
+      "height": 1180,
+      "fill": "#ffffffff",
+      "layout": "vertical",
+      "gap": 16,
+      "padding": 20,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f105",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "t99",
+              "name": "課程學員數據儀表板",
+              "fill": "#2C2C2B",
+              "content": "課程學員數據儀表板",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "f102",
+              "name": "Demo Badge",
+              "fill": "#FBEBDE",
+              "cornerRadius": 999,
+              "gap": 6,
+              "padding": [
+                5,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 99,
+                  "id": "r100",
+                  "name": "dot",
+                  "fill": "#D5803B",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "text",
+                  "id": "t101",
+                  "name": "Demo／假資料版",
+                  "fill": "#D5803B",
+                  "content": "Demo／假資料版",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t103",
+              "name": "觀察學員是否跟上課程，並完成自己的 MVP",
+              "fill": "#2C2C2B",
+              "content": "觀察學員是否跟上課程，並完成自己的 MVP",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "t104",
+              "name": "Mock data｜2026/07/10",
+              "fill": "#7D7A75",
+              "content": "Mock data｜2026/07/10",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f120",
+          "name": "KPI 2x2",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f112",
+              "name": "r1",
+              "width": "fill_container",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f108",
+                  "name": "KPI 總學員數",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#E6E5E3",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": [
+                    18,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t106",
+                      "name": "總學員數",
+                      "fill": "#7D7A75",
+                      "content": "總學員數",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t107",
+                      "name": "48",
+                      "fill": "#2C2C2B",
+                      "content": "48",
+                      "fontFamily": "Inter",
+                      "fontSize": 30,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f111",
+                  "name": "KPI 已開始學習",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#E6E5E3",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": [
+                    18,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t109",
+                      "name": "已開始學習",
+                      "fill": "#7D7A75",
+                      "content": "已開始學習",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t110",
+                      "name": "39",
+                      "fill": "#2783DE",
+                      "content": "39",
+                      "fontFamily": "Inter",
+                      "fontSize": 30,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f119",
+              "name": "r2",
+              "width": "fill_container",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f115",
+                  "name": "KPI 平均完成進度",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#E6E5E3",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": [
+                    18,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t113",
+                      "name": "平均完成進度",
+                      "fill": "#7D7A75",
+                      "content": "平均完成進度",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t114",
+                      "name": "56%",
+                      "fill": "#2783DE",
+                      "content": "56%",
+                      "fontFamily": "Inter",
+                      "fontSize": 30,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f118",
+                  "name": "KPI 作品完成率",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": "#E6E5E3",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": [
+                    18,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t116",
+                      "name": "作品完成率",
+                      "fill": "#7D7A75",
+                      "content": "作品完成率",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t117",
+                      "name": "31%",
+                      "fill": "#46A171",
+                      "content": "31%",
+                      "fontFamily": "Inter",
+                      "fontSize": 30,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f152",
+          "name": "章節進度",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": "#E6E5E3",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": 14,
+          "children": [
+            {
+              "type": "text",
+              "id": "t121",
+              "name": "章節進度分布",
+              "fill": "#2C2C2B",
+              "content": "章節進度分布",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "f126",
+              "name": "Bar 想法收斂",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t122",
+                  "name": "想法收斂",
+                  "fill": "#2C2C2B",
+                  "content": "想法收斂",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "f124",
+                  "name": "Track",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 10,
+                  "fill": "#F0EFED",
+                  "cornerRadius": 99,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r123",
+                      "name": "fill",
+                      "fill": "#2783DE",
+                      "width": 123,
+                      "height": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t125",
+                  "name": "88%",
+                  "fill": "#2C2C2B",
+                  "content": "88%",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f131",
+              "name": "Bar Spec",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t127",
+                  "name": "Spec",
+                  "fill": "#2C2C2B",
+                  "content": "Spec",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "f129",
+                  "name": "Track",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 10,
+                  "fill": "#F0EFED",
+                  "cornerRadius": 99,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r128",
+                      "name": "fill",
+                      "fill": "#2783DE",
+                      "width": 102,
+                      "height": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t130",
+                  "name": "73%",
+                  "fill": "#2C2C2B",
+                  "content": "73%",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f136",
+              "name": "Bar User Stories",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t132",
+                  "name": "User Stories",
+                  "fill": "#2C2C2B",
+                  "content": "User Stories",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "f134",
+                  "name": "Track",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 10,
+                  "fill": "#F0EFED",
+                  "cornerRadius": 99,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r133",
+                      "name": "fill",
+                      "fill": "#2783DE",
+                      "width": 91,
+                      "height": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t135",
+                  "name": "65%",
+                  "fill": "#2C2C2B",
+                  "content": "65%",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f141",
+              "name": "Bar Build Sprint",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t137",
+                  "name": "Build Sprint",
+                  "fill": "#2C2C2B",
+                  "content": "Build Sprint",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "f139",
+                  "name": "Track",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 10,
+                  "fill": "#F0EFED",
+                  "cornerRadius": 99,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r138",
+                      "name": "fill",
+                      "fill": "#2783DE",
+                      "width": 64,
+                      "height": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t140",
+                  "name": "46%",
+                  "fill": "#2C2C2B",
+                  "content": "46%",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f146",
+              "name": "Bar 驗收與修正",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t142",
+                  "name": "驗收與修正",
+                  "fill": "#2C2C2B",
+                  "content": "驗收與修正",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "f144",
+                  "name": "Track",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 10,
+                  "fill": "#F0EFED",
+                  "cornerRadius": 99,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r143",
+                      "name": "fill",
+                      "fill": "#2783DE",
+                      "width": 49,
+                      "height": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t145",
+                  "name": "35%",
+                  "fill": "#2C2C2B",
+                  "content": "35%",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f151",
+              "name": "Bar 發布／延伸應用",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t147",
+                  "name": "發布／延伸應用",
+                  "fill": "#2C2C2B",
+                  "content": "發布／延伸應用",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "f149",
+                  "name": "Track",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 10,
+                  "fill": "#F0EFED",
+                  "cornerRadius": 99,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r148",
+                      "name": "fill",
+                      "fill": "#2783DE",
+                      "width": 26,
+                      "height": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t150",
+                  "name": "19%",
+                  "fill": "#2C2C2B",
+                  "content": "19%",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f174",
+          "name": "作品狀態",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 12,
+          "stroke": "#E6E5E3",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "padding": 14,
+          "children": [
+            {
+              "type": "text",
+              "id": "t153",
+              "name": "作品完成狀態",
+              "fill": "#2C2C2B",
+              "content": "作品完成狀態",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "f158",
+              "name": "Status 尚未開始",
+              "width": "fill_container",
+              "padding": [
+                10,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f156",
+                  "name": "Left",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r154",
+                      "name": "dot",
+                      "fill": "#7D7A75",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "t155",
+                      "name": "尚未開始",
+                      "fill": "#2C2C2B",
+                      "content": "尚未開始",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t157",
+                  "name": "12",
+                  "fill": "#2C2C2B",
+                  "content": "12",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f163",
+              "name": "Status Build Sprint 中",
+              "width": "fill_container",
+              "padding": [
+                10,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f161",
+                  "name": "Left",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r159",
+                      "name": "dot",
+                      "fill": "#D5803B",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "t160",
+                      "name": "Build Sprint 中",
+                      "fill": "#2C2C2B",
+                      "content": "Build Sprint 中",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t162",
+                  "name": "17",
+                  "fill": "#2C2C2B",
+                  "content": "17",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f168",
+              "name": "Status 已完成 MVP",
+              "width": "fill_container",
+              "padding": [
+                10,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f166",
+                  "name": "Left",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r164",
+                      "name": "dot",
+                      "fill": "#2783DE",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "t165",
+                      "name": "已完成 MVP",
+                      "fill": "#2C2C2B",
+                      "content": "已完成 MVP",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t167",
+                  "name": "11",
+                  "fill": "#2C2C2B",
+                  "content": "11",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f173",
+              "name": "Status 已發布",
+              "width": "fill_container",
+              "padding": [
+                10,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f171",
+                  "name": "Left",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 99,
+                      "id": "r169",
+                      "name": "dot",
+                      "fill": "#46A171",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "t170",
+                      "name": "已發布",
+                      "fill": "#2C2C2B",
+                      "content": "已發布",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t172",
+                  "name": "4",
+                  "fill": "#2C2C2B",
+                  "content": "4",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f176",
+          "name": "CTA",
+          "width": "fill_container",
+          "fill": "#2783DE",
+          "cornerRadius": 8,
+          "padding": 14,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "t175",
+              "name": "查看與篩選學員 →",
+              "fill": "#FFFFFF",
+              "content": "查看與篩選學員 →",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fileToken": "82eba406-eb15-48f4-9d22-7089ad0603bf"
+}
