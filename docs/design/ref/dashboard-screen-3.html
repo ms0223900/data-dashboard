@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>學員列表與篩選</title>
+<style>
+  :root {
+    --text-primary: #2C2C2B;
+    --text-secondary: #7D7A75;
+    --canvas: #FFFFFF;
+    --surface: #F9F8F7;
+    --surface-2: #F0EFED;
+    --border: #E6E5E3;
+    --blue: #2783DE;
+    --blue-soft: #E5F2FC;
+    --green: #46A171;
+    --green-soft: #E8F1EC;
+    --orange: #D5803B;
+    --orange-soft: #FBEBDE;
+    --red: #E56458;
+    --red-soft: #FCE9E7;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--surface);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+  }
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+  .header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .badge-demo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--orange);
+    background: var(--orange-soft);
+    border-radius: 999px;
+    padding: 5px 12px;
+    white-space: nowrap;
+  }
+  .card {
+    background: var(--canvas);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 150px;
+  }
+  .filter-field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  select {
+    appearance: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 32px 9px 12px;
+    font-size: 14px;
+    color: var(--text-primary);
+    min-height: 40px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%237D7A75' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  select:focus {
+    outline: 2px solid var(--blue);
+    outline-offset: 1px;
+  }
+  .reset-btn {
+    align-self: flex-end;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .reset-btn:hover { background: var(--surface-2); }
+  .reset-btn:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+  }
+  .count-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 4px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .count-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .count-text strong { color: var(--text-primary); }
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+    font-size: 13px;
+  }
+  thead th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--surface);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+  tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    color: var(--text-primary);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface); }
+  .name-cell { font-weight: 600; }
+  .email-cell { color: var(--text-secondary); }
+  .progress-cell { display: flex; align-items: center; gap: 8px; }
+  .progress-track {
+    width: 56px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .progress-fill { height: 100%; background: var(--blue); border-radius: 999px; }
+  .progress-num { font-weight: 600; min-width: 34px; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill-gray { background: var(--surface-2); color: var(--text-secondary); }
+  .pill-blue { background: var(--blue-soft); color: var(--blue); }
+  .pill-green { background: var(--green-soft); color: var(--green); }
+  .pill-orange { background: var(--orange-soft); color: var(--orange); }
+  .link-cell a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .link-cell a:hover { text-decoration: underline; }
+  .link-dash { color: var(--text-secondary); }
+  .empty-state {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 56px 24px;
+    gap: 12px;
+  }
+  .empty-state.show { display: flex; }
+  .table-scroll.hide { display: none; }
+  .empty-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .empty-state p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .empty-state .reset-btn { align-self: center; }
+  .hint {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 10px 4px 0;
+  }
+  @media (max-width: 430px) {
+    .page { padding: 20px 16px 32px; }
+    .header { flex-direction: column; }
+    .filter-row { gap: 10px; }
+    .filter-field { min-width: 0; flex: 1 1 calc(50% - 5px); }
+    .reset-btn { flex: 1 1 100%; align-self: stretch; }
+    table { min-width: 640px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div>
+      <h1>學員列表與篩選</h1>
+      <p>從整體數字回到個別學員，快速查看不同學習與作品狀態的群組</p>
+    </div>
+    <span class="badge-demo">● Demo／假資料版</span>
+  </div>
+
+  <div class="card">
+    <div class="filter-row">
+      <div class="filter-field">
+        <label for="filter-learn">學習狀態</label>
+        <select id="filter-learn">
+          <option value="all">全部</option>
+          <option value="尚未開始">尚未開始</option>
+          <option value="學習中">學習中</option>
+          <option value="已完成主要章節">已完成主要章節</option>
+          <option value="已完課">已完課</option>
+          <option value="近期未活動">近期未活動</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <label for="filter-work">作品狀態</label>
+        <select id="filter-work">
+          <option value="all">全部</option>
+          <option value="尚未開始">尚未開始</option>
+          <option value="Build Sprint 中">Build Sprint 中</option>
+          <option value="已完成 MVP">已完成 MVP</option>
+          <option value="已發布">已發布</option>
+        </select>
+      </div>
+      <div class="filter-field">
+        <label for="filter-progress">完成進度</label>
+        <select id="filter-progress">
+          <option value="all">全部</option>
+          <option value="0-25">0–25%</option>
+          <option value="26-50">26–50%</option>
+          <option value="51-75">51–75%</option>
+          <option value="76-100">76–100%</option>
+        </select>
+      </div>
+      <button class="reset-btn" id="reset-btn" type="button">重設</button>
+    </div>
+  </div>
+
+  <div class="count-row">
+    <div class="count-text">目前顯示：<strong id="count-num">0</strong> 位學員</div>
+  </div>
+
+  <div class="table-scroll" id="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>Email</th>
+          <th>進度</th>
+          <th>目前章節</th>
+          <th>學習狀態</th>
+          <th>作品狀態</th>
+          <th>最後活動</th>
+          <th>作品連結</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+
+  <div class="empty-state" id="empty-state">
+    <div class="empty-icon">🔍</div>
+    <p>沒有符合目前篩選條件的學員</p>
+    <button class="reset-btn" id="reset-btn-2" type="button">清除篩選</button>
+  </div>
+
+  <p class="hint">第一版僅提供顯示與篩選，不包含學員備註編輯、權限管理或完整 CRM。</p>
+</div>
+
+<script>
+  const students = [
+    { name: "林小安", email: "an@example.com", progress: 82, chapter: "Build Sprint", learn: "已完成主要章節", work: "已完成 MVP", last: "2026/07/09", link: "查看作品" },
+    { name: "陳小宇", email: "yu@example.com", progress: 54, chapter: "User Stories", learn: "學習中", work: "Build Sprint 中", last: "2026/07/08", link: null },
+    { name: "王小晴", email: "sunny@example.com", progress: 18, chapter: "Spec", learn: "近期未活動", work: "尚未開始", last: "2026/06/20", link: null },
+    { name: "張哲遠", email: "cheyuan@example.com", progress: 95, chapter: "發布／延伸應用", learn: "已完課", work: "已發布", last: "2026/07/10", link: "查看作品" },
+    { name: "李婷惟", email: "tingwei@example.com", progress: 8, chapter: "想法收斂", learn: "尚未開始", work: "尚未開始", last: "2026/05/28", link: null },
+    { name: "吳佳玲", email: "chialing@example.com", progress: 67, chapter: "Build Sprint", learn: "學習中", work: "Build Sprint 中", last: "2026/07/07", link: null },
+    { name: "鄭凡宇", email: "fanyu@example.com", progress: 41, chapter: "User Stories", learn: "近期未活動", work: "尚未開始", last: "2026/06/12", link: null },
+    { name: "黃敏惠", email: "minhui@example.com", progress: 88, chapter: "驗收與修正", learn: "已完成主要章節", work: "已完成 MVP", last: "2026/07/09", link: "查看作品" },
+    { name: "徐子磊", email: "zilei@example.com", progress: 25, chapter: "Spec", learn: "學習中", work: "尚未開始", last: "2026/07/02", link: null },
+    { name: "何欣妮", email: "sinni@example.com", progress: 73, chapter: "Build Sprint", learn: "已完成主要章節", work: "Build Sprint 中", last: "2026/07/06", link: null },
+    { name: "高遠志", email: "yuanzhi@example.com", progress: 4, chapter: "想法收斂", learn: "尚未開始", work: "尚未開始", last: "2026/05/15", link: null },
+    { name: "謝晨曦", email: "chenxi@example.com", progress: 100, chapter: "發布／延伸應用", learn: "已完課", work: "已發布", last: "2026/07/10", link: "查看作品" },
+    { name: "潘悠然", email: "youran@example.com", progress: 34, chapter: "User Stories", learn: "近期未活動", work: "尚未開始", last: "2026/06/05", link: null },
+    { name: "鄧子琳", email: "zilin@example.com", progress: 59, chapter: "Build Sprint", learn: "學習中", work: "Build Sprint 中", last: "2026/07/05", link: null },
+    { name: "蔡明軒", email: "mingxuan@example.com", progress: 78, chapter: "驗收與修正", learn: "已完成主要章節", work: "已完成 MVP", last: "2026/07/08", link: "查看作品" },
+    { name: "施雅婷", email: "yating@example.com", progress: 15, chapter: "Spec", learn: "近期未活動", work: "尚未開始", last: "2026/06/18", link: null },
+  ];
+
+  const learnPillClass = {
+    "尚未開始": "pill-gray",
+    "學習中": "pill-blue",
+    "已完成主要章節": "pill-green",
+    "已完課": "pill-green",
+    "近期未活動": "pill-orange",
+  };
+  const workPillClass = {
+    "尚未開始": "pill-gray",
+    "Build Sprint 中": "pill-blue",
+    "已完成 MVP": "pill-green",
+    "已發布": "pill-green",
+  };
+
+  function progressBucket(p) {
+    if (p <= 25) return "0-25";
+    if (p <= 50) return "26-50";
+    if (p <= 75) return "51-75";
+    return "76-100";
+  }
+
+  const tableBody = document.getElementById("table-body");
+  const tableWrap = document.getElementById("table-wrap");
+  const emptyState = document.getElementById("empty-state");
+  const countNum = document.getElementById("count-num");
+  const filterLearn = document.getElementById("filter-learn");
+  const filterWork = document.getElementById("filter-work");
+  const filterProgress = document.getElementById("filter-progress");
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
+
+  function render() {
+    const learnVal = filterLearn.value;
+    const workVal = filterWork.value;
+    const progVal = filterProgress.value;
+
+    const filtered = students.filter((s) => {
+      if (learnVal !== "all" && s.learn !== learnVal) return false;
+      if (workVal !== "all" && s.work !== workVal) return false;
+      if (progVal !== "all" && progressBucket(s.progress) !== progVal) return false;
+      return true;
+    });
+
+    countNum.textContent = filtered.length;
+
+    if (filtered.length === 0) {
+      tableWrap.classList.add("hide");
+      emptyState.classList.add("show");
+      tableBody.innerHTML = "";
+      return;
+    }
+
+    tableWrap.classList.remove("hide");
+    emptyState.classList.remove("show");
+
+    tableBody.innerHTML = filtered.map((s) => `
+      <tr>
+        <td class="name-cell">${escapeHtml(s.name)}</td>
+        <td class="email-cell">${escapeHtml(s.email)}</td>
+        <td>
+          <div class="progress-cell">
+            <span class="progress-num">${s.progress}%</span>
+            <span class="progress-track"><span class="progress-fill" style="width:${s.progress}%"></span></span>
+          </div>
+        </td>
+        <td>${escapeHtml(s.chapter)}</td>
+        <td><span class="pill ${learnPillClass[s.learn] || "pill-gray"}">${escapeHtml(s.learn)}</span></td>
+        <td><span class="pill ${workPillClass[s.work] || "pill-gray"}">${escapeHtml(s.work)}</span></td>
+        <td>${escapeHtml(s.last)}</td>
+        <td class="link-cell">${s.link ? `<a href="#" onclick="return false;">${escapeHtml(s.link)}</a>` : '<span class="link-dash">—</span>'}</td>
+      </tr>
+    `).join("");
+  }
+
+  function resetFilters() {
+    filterLearn.value = "all";
+    filterWork.value = "all";
+    filterProgress.value = "all";
+    render();
+  }
+
+  filterLearn.addEventListener("change", render);
+  filterWork.addEventListener("change", render);
+  filterProgress.addEventListener("change", render);
+  document.getElementById("reset-btn").addEventListener("click", resetFilters);
+  document.getElementById("reset-btn-2").addEventListener("click", resetFilters);
+
+  render();
+</script>
+</body>
+</html>

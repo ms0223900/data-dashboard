@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>章節進度與作品完成狀態</title>
+  <style>
+    :root {
+      --text: #2C2C2B;
+      --muted: #7D7A75;
+      --canvas: #FFFFFF;
+      --soft: #F9F8F7;
+      --surface: #F0EFED;
+      --border: #E6E5E3;
+      --blue: #2783DE;
+      --blue-soft: #E5F2FC;
+      --green: #46A171;
+      --green-soft: #E8F1EC;
+      --orange: #D5803B;
+      --orange-soft: #FBEBDE;
+      --red: #E56458;
+      --red-soft: #FCE9E7;
+      --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 12px rgba(0,0,0,.04);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(39,131,222,.12), transparent 30%),
+        radial-gradient(circle at 94% 8%, rgba(213,128,59,.12), transparent 28%),
+        var(--canvas);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 32px 28px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--orange-soft);
+      color: #8F4E1D;
+      font-size: 14px;
+      font-weight: 650;
+      margin-bottom: 12px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+    h1 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 0 0 10px;
+    }
+    .subtitle {
+      max-width: 660px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .summary-card {
+      min-width: 220px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.84);
+      box-shadow: var(--shadow);
+    }
+    .summary-card .label { color: var(--muted); font-size: 13px; }
+    .summary-card strong { display: block; font-size: 32px; margin-top: 2px; }
+    .summary-card span { color: var(--muted); font-size: 14px; }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.38fr) minmax(320px, .92fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+    .panel {
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow: hidden;
+    }
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+    h2 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+    .hint { color: var(--muted); font-size: 14px; white-space: nowrap; }
+    .bars { display: grid; gap: 13px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 132px 1fr 92px;
+      gap: 14px;
+      align-items: center;
+    }
+    .chapter { font-weight: 650; font-size: 15px; }
+    .track {
+      position: relative;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), #5E9FE8);
+    }
+    .fill.medium { background: linear-gradient(90deg, var(--orange), #EAC26B); }
+    .fill.low { background: linear-gradient(90deg, #A6A29B, #D5D2CE); }
+    .count { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; }
+    .status-list { display: grid; gap: 12px; }
+    .status-item {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+    }
+    .icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: grid; place-items: center;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .s0 .icon { background: var(--surface); }
+    .s1 .icon { background: var(--orange-soft); color: #8F4E1D; }
+    .s2 .icon { background: var(--green-soft); color: #276747; }
+    .s3 .icon { background: var(--blue-soft); color: #165E9F; }
+    .status-name { font-weight: 700; }
+    .status-meta { color: var(--muted); font-size: 14px; }
+    .percent {
+      font-size: 22px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+    .insight {
+      margin-top: 20px;
+      padding: 18px 18px 18px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue-soft), rgba(229,242,252,.38));
+      border: 1px solid rgba(39,131,222,.18);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .insight-mark {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: var(--blue);
+      color: white;
+      display: grid; place-items: center;
+      font-weight: 800;
+    }
+    .insight h3 { margin: 0 0 4px; font-size: 17px; }
+    .insight p { margin: 0; color: #3F5F76; }
+    .teaching {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .point {
+      padding: 14px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 14px;
+    }
+    .point b { display: block; margin-bottom: 4px; }
+    @media (max-width: 850px) {
+      .wrap { padding: 24px 18px; }
+      header, .grid, .teaching { grid-template-columns: 1fr; display: grid; }
+      .summary-card { min-width: 0; }
+      .bar-row { grid-template-columns: 108px 1fr 70px; gap: 10px; }
+      .hint { white-space: normal; }
+    }
+    @media (max-width: 480px) {
+      .panel { padding: 16px; border-radius: 14px; }
+      .bar-row { grid-template-columns: 1fr; gap: 6px; }
+      .count { text-align: left; }
+      .status-item { grid-template-columns: 38px 1fr auto; padding: 10px; }
+      .icon { width: 38px; height: 38px; }
+      .percent { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" aria-label="章節進度與作品完成狀態儀表板">
+    <header>
+      <section>
+        <div class="eyebrow"><span class="dot"></span>Demo／假資料版</div>
+        <h1>章節進度與作品完成狀態</h1>
+        <p class="subtitle">協助管理者看出學員停留在哪個課程階段，並把「看課進度」和「實際做出作品」分開判斷。</p>
+      </section>
+      <aside class="summary-card" aria-label="重點摘要">
+        <div class="label">關鍵落差</div>
+        <strong>46%</strong>
+        <span>已進入 Build Sprint；低於完成 Spec 的 73%</span>
+      </aside>
+    </header>
+
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-title">
+          <h2>章節進度分布</h2>
+          <div class="hint">完成率以 48 位學員計算</div>
+        </div>
+        <div class="bars" role="list">
+          <div class="bar-row" role="listitem"><div class="chapter">想法收斂</div><div class="track" aria-label="想法收斂 88%"><div class="fill" style="width:88%"></div></div><div class="count">42／48 · 88%</div></div>
+          <div class="bar-row" role="listitem"><div class="chapter">Spec</div><div class="track" aria-label="Spec 73%"><div class="fill" style="width:73%"></div></div><div class="count">35／48 · 73%</div></div>
+          <div class="bar-row" role="listitem"><div class="chapter">User Stories</div><div class="track" aria-label="User Stories 65%"><div class="fill" style="width:65%"></div></div><div class="count">31／48 · 65%</div></div>
+          <div class="bar-row" role="listitem"><div class="chapter">Build Sprint</div><div class="track" aria-label="Build Sprint 46%"><div class="fill medium" style="width:46%"></div></div><div class="count">22／48 · 46%</div></div>
+          <div class="bar-row" role="listitem"><div class="chapter">驗收與修正</div><div class="track" aria-label="驗收與修正 35%"><div class="fill medium" style="width:35%"></div></div><div class="count">17／48 · 35%</div></div>
+          <div class="bar-row" role="listitem"><div class="chapter">發布／延伸應用</div><div class="track" aria-label="發布／延伸應用 19%"><div class="fill low" style="width:19%"></div></div><div class="count">9／48 · 19%</div></div>
+        </div>
+        <div class="insight">
+          <div class="insight-mark">i</div>
+          <div>
+            <h3>資料解讀提示</h3>
+            <p>最多學員已完成 Spec，但進入 Build Sprint 的比例下降；後續可評估是否補充實作示範、除錯案例或 Sprint 範例。</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-title">
+          <h2>作品完成狀態</h2>
+          <div class="hint">分辨是否真的產出作品</div>
+        </div>
+        <div class="status-list" role="list">
+          <div class="status-item s0" role="listitem"><div class="icon">0</div><div><div class="status-name">尚未開始</div><div class="status-meta">12 人</div></div><div class="percent">25%</div></div>
+          <div class="status-item s1" role="listitem"><div class="icon">B</div><div><div class="status-name">Build Sprint 中</div><div class="status-meta">17 人</div></div><div class="percent">35%</div></div>
+          <div class="status-item s2" role="listitem"><div class="icon">M</div><div><div class="status-name">已完成 MVP</div><div class="status-meta">11 人</div></div><div class="percent">23%</div></div>
+          <div class="status-item s3" role="listitem"><div class="icon">✓</div><div><div class="status-name">已發布</div><div class="status-meta">4 人</div></div><div class="percent">8%</div></div>
+        </div>
+        <div class="teaching">
+          <div class="point"><b>章節圖表</b>回答學員主要完成到哪裡。</div>
+          <div class="point"><b>作品狀態</b>回答是否真的做出作品。</div>
+          <div class="point"><b>摘要提示</b>只做可理解判斷，不進入複雜 BI。</div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
