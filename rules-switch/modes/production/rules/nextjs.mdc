@@ -1,0 +1,33 @@
+---
+description: PRODUCTION Next.js—strict server/client split; centralized typed helper; no inline duplication; structured API errors (zh-TW).
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Next.js（PRODUCTION）
+
+## Server／Client
+
+- 預設 Server Component；**only** `'use client'` 當需要 hooks／瀏覽器／狀態。
+- **`NEXT_PUBLIC_*`** 僅公開值。**禁止** service role、私密 API Key 出現在 client bundle。
+
+## 架構與檔案
+
+- Route Handlers：`NextResponse.json`／一致 HTTP semantics；錯誤 body **不包含** secrets。
+- **禁止**在多個元件複製 fetch／DB write 邏輯；資料取得可抽 **`lib/`** hooks 或由 server fetch + props。
+
+## UI
+
+- Tailwind + 基本 a11y（語意標籤、`aria-*` 若適用）。
+- 感謝訊息與錯誤通知：獨立 client 子元件 + typed props。
+
+## Do / Don't
+
+| Do | Don't |
+| --- | --- |
+| 機密與 mutations 留 server | client 呼叫 service role 寫庫 |
+| 快取策略明確（即時 Dashboard no-store） | 默認快取導致舊數據 |
+
+## 參照
+
+- [`docs/spec.md`](docs/spec.md)、[`AGENTS.md`](AGENTS.md)

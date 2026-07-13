@@ -1,0 +1,2 @@
+-- Data Dashboard - Schema
+-- TODO: Add database tables as needed.

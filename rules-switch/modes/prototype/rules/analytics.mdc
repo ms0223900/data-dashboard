@@ -1,0 +1,29 @@
+---
+description: PROTOTYPE Analytics—track client events to analytics_events; sessionId generated client-side; dashboard calculated from DB.
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Analytics（PROTOTYPE）
+
+## 絕對底線
+
+- **事件類型** 限制為 `page_view`、`cta_click`、`form_submit_success`、`form_submit_error`。
+- **`session_id`**：Client 端必須產生（可用 cookie 或 localStorage）並在傳送事件時攜帶，用以區分不重複訪客。
+- **Dashboard 數據**：必須是從資料庫統計計算（由 DB SQL 語法 count），**不允許**使用前端寫死假數據（這點非常關鍵，為教學展示底線）。
+
+## PROTOTYPE 可取捨
+
+- 事件寫入 API 失敗時，應捕捉錯誤（`catch`），**不得**中斷訪客正常的表單送出或網頁閱讀流程（不可拖垮整頁）。
+- `sessionId` 產生邏輯可最簡化，毋需考慮複雜的跨子網域追蹤。
+
+## Do / Don't
+
+| Do | Don't |
+| --- | --- |
+| 用 DB 即時計算指標 | 使用前端隨機/假數據統計 |
+| 容錯處理：Analytics 失敗不中斷主表單 | 追蹤失敗導致整個網頁 crash |
+
+## 參照
+
+- [`docs/spec.md`](docs/spec.md)、[`supabase.mdc`](supabase.mdc)

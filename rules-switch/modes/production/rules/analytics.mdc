@@ -1,0 +1,32 @@
+---
+description: PRODUCTION Analytics—track events securely; sessionId client-side; DB-computed aggregates; fail-safe async triggers.
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Analytics（PRODUCTION）
+
+## 安全性與環境
+
+- 事件追蹤寫入 `analytics_events` 必須在 **Server** 或受信任的 **API Route Handler** 進行；Client 僅能呼叫特定的 API 端點，不得直接使用特權金鑰寫入。
+
+## 業務與數據一致性
+
+- 僅支援 spec 規定的 4 種事件：`page_view`、`cta_click`、`form_submit_success`、`form_submit_error`。
+- Dashboard 數據（例如總瀏覽、轉換率等）必須經由 Supabase SQL query 執行即時統計（如 `count(*)`、`sum()`），嚴格禁止寫死統計值或快取錯誤。
+- 各指標在沒有資料時，必須有健全的 fallback（如 `0`、`0%`），不得顯示 `NaN` 或破壞 UI 排版。
+
+## 防重複與生命週期
+
+- Client 端 `session_id` 需建立穩定的產生機制（例如 cookie），避免每次重整網頁都產生全新 `session_id` 導致 page_view 虛高。
+
+## Do / Don't
+
+| Do | Don't |
+| --- | --- |
+| 追蹤失敗有 try-catch 阻斷，不影響主業務 | Analytics 故障導致表單無法送出 |
+| 正確處理瀏覽量為 0 時的轉換率（防除以零） | 遇到除以零直接 crash |
+
+## 參照
+
+- [`docs/spec.md`](docs/spec.md)、[`supabase.mdc`](supabase.mdc)
