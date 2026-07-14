@@ -1,6 +1,6 @@
 ---
 name: ticket-to-ai-spec
-description: Transforms raw tickets into machine-readable AI Agent development specs by cleaning and structuring requirements, hardening logic and edge cases, and defining clear acceptance criteria and technical boundaries. Use when the user pastes ticket content or references tickets, user stories, or acceptance criteria and wants AI-ready implementation specs.
+description: Transforms raw tickets into machine-readable AI Agent development specs by cleaning and structuring requirements, hardening logic and edge cases, and defining clear acceptance criteria and technical boundaries. 產出 spec 檔案後會自動呼叫 `/independent-review`，由獨立 sub-agent 對照現有程式碼核對 spec 假設、揪出可能擋住本次需求驗收的既有問題；與本次需求強相關（不修就無法驗收）的問題併入主 spec，其餘無直接依賴的問題/疑慮拆到獨立的「盤點問題」spec 檔案。若 ticket 屬於研究/非開發性質（例如 issue type 為 `S：Non-Dev`，或 ticket 自訂了「預期產出」條列項目），完整開發規格只作為技術附件，另外會產出一份格式對齊 ticket 自身「預期產出」的「研究結論」文件作為實際交付物。Use when the user pastes ticket content or references tickets, user stories, or acceptance criteria and wants AI-ready implementation specs.
 ---
 
 # Ticket → AI 開發規格 / Ticket → AI Dev Spec
@@ -68,6 +68,7 @@ description: Transforms raw tickets into machine-readable AI Agent development s
 
 - 禁止使用「優化」、「提升」、「改善」等模糊動詞，改用具體行為與指標。
 - 必須包含明確的欄位定義（Field Definitions）或 API 互動邏輯（Request/Response）。
+- 敘述性文字（Context 摘要、風險說明等）力求精簡：不要把其他章節（User Story、AC、技術邊界）已經表達過的內容再展開複述一次；Ticket 可能經過多輪釐清才定案，每次重新產出 spec 時都要留意有沒有把舊版的鋪陳原封不動搬過來，越改越長。
 ```
 
 ---
@@ -75,6 +76,15 @@ description: Transforms raw tickets into machine-readable AI Agent development s
 ## Workflow / 操作流程
 
 每次使用本 skill 時，依照以下步驟行動。
+
+### Step 0: 判斷 Ticket 類型（研發 vs 研究/非開發）
+
+在收集輸入之前，先確認這張 ticket 的性質，這會決定「最終實際要提交的產出」長什麼樣子：
+
+- **開發類 ticket**（issue type 為 Story/Task/Bug 等，內容本身就是要新增/修改功能）：本 skill 產出的完整 7 節 AI 開發規格（User Story／功能細節／AC／技術邊界／MVP 判定／風險）本身就是最終產出，直接照 Workflow 走即可，不需要額外處理。
+- **研究/非開發類 ticket**（issue type 標記為 `S：Non-Dev` 之類，或 ticket 內文本身就寫了一段「預期產出／預期輸出」章節、明確定義了要交付的具體條列項目，例如「1. 說明現況 2. 評估是否需要改善方案並提出建議做法」）：**本 skill 產出的完整 AI 開發規格格式不能原封不動當作這類 ticket 的實際交付物**。即使規格裡加了「本 ticket 不含實作」的聲明文字，Given/When/Then AC、`MVP: true` 這類宣告式格式本身的語氣，仍然會蓋過那句聲明，讓讀者誤以為「問題已確認、範圍已核准、只待實作」。遇到這種 ticket：
+  1. 仍照 Step 1～11 走完整流程，把產出的完整規格當作**技術附件**存檔（見 File Output）——保留程式碼行號、AC 草案、獨立審查結果，供之後若真的要排入開發時直接引用。
+  2. **另外**依 Step 12 產出一份格式對齊 ticket 自己「預期產出」條列項目的「研究結論」文件，那份才是實際要提交出去的東西，不是技術附件。
 
 ### Step 1: 收集輸入 / Collect Input
 
@@ -173,13 +183,47 @@ Given [前置條件] When [使用者進行某個動作或系統發生某事件] 
 
 1. **開發實作時應注意 (Implementation-time Concerns)**:
    - 階段：**Dev / Code Review**。
-   - 定義：開發者在實作本 Story 時必須主動處理或檢查的技術細節（例如：Element-UI 組件覆蓋、icon 對齊、特定 CSS 規則）。
+   - 定義：開發者在實作本 Story 時必須主動處理或檢查的技術細節（例如：UI 元件庫樣式覆蓋、icon 對齊、特定 CSS 規則）。
 2. **規格與需求灰區 (Spec-level Gaps / Pre-dev Questions)**:
    - 階段：**Grooming / Spec Review**。
    - 定義：規格本身尚未定義清楚，需在開發前先詢問 PM/UX/架構師取得答案（例如：Typography 階層、跨頁面一致性、效能指標）。
 3. **動態詢問與邊界調整 (Runtime/Dynamic Clarifications)**:
    - 階段：**In Progress / QA / UAT**。
    - 定義：只有在開發或測試遇到邊界案例（Edge Cases）時才會浮現的問題，開發者應在遇到時暫停並與 PM/UX 同步決策（例如：長字串破版處理、特定 OS 渲染問題）。
+
+### Step 10: 獨立審查 / Independent Review
+
+Step 9 完成、且依「File Output」章節把主 spec 檔案存檔後，**自動**呼叫 `/independent-review`，不需要等使用者另外要求：
+
+- **審查標的**：剛存檔的主 spec 檔案本身（例如 `docs/specs/PROJ-123-checkout-apple-pay.md`）。
+- **額外素材**：原始 Ticket 全文、Step 2 整理出的 Impacted Areas（作為線索去現有程式碼裡找對應模組/API/欄位）。
+- **明確告知 sub-agent 這次審查的性質和一般用法不同**：標的是「尚未開始實作、即將依此 spec 開發」的規格文件，不是已完成的 diff/修改。除了 `independent-review` 既有的三個視角，額外指示它去現有程式碼中查證：
+  1. Spec 提到的 Impacted Areas、Technical Boundaries、引用的模組/API/欄位，是否真的存在、行為是否與 spec 假設相符（找不到或行為不符，就是一個 finding）。
+  2. 這個需求範圍內，程式碼現況是否已存在會擋住本次 AC 驗收的既有 bug、資料狀態或設計限制（例如某個共用函式現有邏輯本身就有錯，此需求剛好會依賴它）。
+  3. 其他跟本次需求沒有直接依賴、但盤點過程中發現的問題/疑慮（次要，僅記錄不阻塞）。
+- 依 `independent-review` Step 1 的規模評估規則決定開 1 或最多 3 個 sub-agent；不需要重新自創規則。
+
+### Step 11: 判斷分流並回填輸出
+
+拿到 `independent-review` 的結構化報告後，逐條檢視每個 finding，判斷是否與本次需求**強相關**：
+
+- **強相關（會阻擋本次驗收）**：若不處理，本次 spec 的某條 AC 就無法通過驗收（例如：AC 要求某計算結果正確，但該計算函式現有邏輯本身就有 bug）→ **併入主 spec 檔案**，不拆分：
+  - 在主 spec 新增一節「⚠️ 需求前置阻塞問題（獨立審查發現）」，列出問題、證據（檔案路徑/行號）、為何會擋住驗收。
+  - 回頭在對應的「驗收標準 (AC)」或「技術邊界」段落註記「此 AC 需先處理上述阻塞問題 N 才能驗證」，不要讓阻塞關係只藏在附註區塊裡。
+- **弱相關（不影響本次驗收）**：與本次需求沒有直接依賴，純粹是盤點過程中發現的問題/疑慮 → **拆到獨立的「盤點問題」spec 檔案**（命名與存放規則見「File Output」章節），主 spec 只留一行指引連結，不把次要問題塞進主 spec 稀釋重點。
+- **無法判斷是否阻塞**：誠實標記「需人工確認是否阻塞本次驗收」，並保守地放進主 spec 的阻塞問題一節（寧可讓人類多看一眼確認可以忽略，也不要漏放導致驗收卡關卻沒人知道原因）。
+- 若 `independent-review` 完全沒有發現任何問題（誠實回報「沒發現嚴重問題」）→ 主 spec 不需要新增阻塞問題一節，也不需要建立「盤點問題」檔案，在完成回報中明確說明「本次獨立審查未發現問題」即可，不要為了有產出硬掰內容。
+
+### Step 12: 研究/非開發類 Ticket 的實際交付物（僅 Step 0 判定為此類型時執行）
+
+若 Step 0 判定這是研究/非開發類 ticket，Step 11 完成後**額外**執行本步驟：
+
+1. 重新讀一次 ticket 原文裡「預期產出／預期輸出」章節列出的具體條列項目——那些條列項目的順序與措辭，才是這份文件要對齊的結構，不是本 skill 通用的 7 節結構。
+2. 產出一份新文件，用**建議語氣**改寫完整規格裡對應的結論：現況說明照實描述；建議做法要具體但避免宣告式措辭——不要出現 `MVP: true`、「AC 必須通過」這類會讓人誤以為已核准待實作的字眼，改用「建議」「建議做法為...」這類用語。
+3. 技術細節（程式碼行號、獨立審查驗證過程、詳細 AC 草案）不要複製進這份文件，用一句話連結回主 spec（技術附件）即可，避免重複與稀釋重點。
+4. **檔名要能一眼看出這是「要交出去的產出」**，與技術附件、任務拆解檔案區分開來（例如 `<KEY>-output-<slug>.md`，或詢問使用者專案內是否已有類似的命名慣例）。
+5. 在主規格（技術附件）檔案開頭加一句聲明，指向這份研究結論文件才是實際產出，主規格只是技術附件，供之後若排入開發時引用。
+6. 完成後明確告知使用者：「實際要提交的是《研究結論》這份文件，主規格是技術附件」——不要讓使用者誤以為主規格本身就是交付物。
 
 ---
 
@@ -228,7 +272,16 @@ Given [前置條件] When [使用者進行某個動作或系統發生某事件] 
      - [列出需在開發前（Grooming / Spec Review 階段）由 PM/UX/架構師先給予答案的規格缺失]
    - **三、動態詢問與邊界調整 (Runtime/Dynamic Clarifications)**
      - [列出在開發或測試遇到特定邊界案例時，應主動暫停並與 PM/UX 同步決策的項目]
+
+7. ⚠️ 需求前置阻塞問題 (Blocking Issues from Independent Review)（僅 Step 11 判定有強相關問題時才新增此節）
+
+   - 問題 1：[標題]
+     - 證據：`path/to/file` 行號 / 具體說明
+     - 影響：擋住哪一條 AC（對應 Story/Scenario）
+   - （若有其他非阻塞問題被拆到獨立檔案）另見：`<spec 檔名>-issues.md`
 ```
+
+這個結構是 Step 1～9 完成當下就能產出的內容；第 7 節「需求前置阻塞問題」是 Step 10/11 獨立審查跑完之後才會決定要不要補上的**附加**章節，不影響前 6 節的既有編號。
 
 ---
 
@@ -240,6 +293,31 @@ Given [前置條件] When [使用者進行某個動作或系統發生某事件] 
     - 若來自 JIRA issue：`<ISSUE_KEY>-<short-slug>.md`，例如：`PROJ-123-checkout-apple-pay.md`。
     - 若非 JIRA issue：使用日期 + 短描述，例如：`2026-03-04-checkout-optimization.md`。
   - 若使用者明確要求 **不需存檔** 或指定其他路徑時，則依使用者指示覆蓋預設行為。
+
+- **獨立審查後的檔案更新（Step 10/11 完成後）**
+  - **強相關（阻塞）問題**：直接改寫剛才存的主 spec 檔案本身，補上「⚠️ 需求前置阻塞問題」一節與對應 AC 的註記，**不建立新檔案**。
+  - **弱相關（非阻塞）問題**：另存一份「盤點問題」檔案，命名比照主 spec 加上 `-issues` 後綴：
+    - 若來自 JIRA issue：`<ISSUE_KEY>-<short-slug>-issues.md`，例如：`PROJ-123-checkout-apple-pay-issues.md`。
+    - 若非 JIRA issue：`<原檔名去除副檔名>-issues.md`。
+    - 內容格式（每個問題視為未來可能獨立開單的線索，不需要完整比照主 spec 的九段結構）：
+      ```markdown
+      # {ISSUE_KEY} 盤點問題與疑慮（非本次需求阻塞項）
+
+      > 由 `/independent-review` 對本次 spec 進行獨立審查時額外盤點到、但與本次需求驗收無直接依賴的問題。可視情況另開 ticket 處理，不阻塞本次驗收。
+
+      ## 問題 1：{標題}
+
+      - **來源視角**：{獨立審查的視角 A/B/C 或查證項目}
+      - **問題描述**：...
+      - **證據**：`path/to/file` 行號 / 具體說明
+      - **建議後續**：例如「另開 ticket」「列入下個 sprint 的 tech debt」
+      ```
+    - 主 spec 檔案在第 6 節「資訊缺失與風險」或新增的第 7 節末端，加一行指引：「另見 `<檔名>-issues.md`，盤點到的非阻塞問題」。
+  - 兩種情況都沒有 → 不建立 `-issues.md`，也不新增主 spec 的第 7 節，維持原本 1～6 節即可。
+
+- **Step 12 產出的研究結論文件（僅研究/非開發類 ticket 適用）**
+  - 存放位置與任務拆解檔案放在一起（例如 `docs/user-stories/<KEY>/`），不要跟技術附件混在同一個 `docs/specs/` 資料夾，避免使用者難以分辨哪份才是要交出去的東西。
+  - 檔名需帶有明確標記使用者一眼認得出「這是產出」，例如 `<KEY>-output-<slug>.md`；沒有既有慣例時可直接提議這個命名法，讓使用者確認或调整。
 
 ---
 
