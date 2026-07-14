@@ -12,11 +12,17 @@
 - 回扣 Spec／US／Build Sprint 學習旅程
 
 **驗收條件**：
-- [ ] Dashboard 可以支撐「課程成效不能只看報名人數」的說法
-- [ ] Dashboard 可以支撐「要看學員是否開始學、是否跟上章節、是否完成作品」的說法
-- [ ] Dashboard 可以回扣 Spec、US、Build Sprint 的學習旅程
-- [ ] Dashboard 可以作為 C-1 影片的收束畫面
-- [ ] 結尾可以帶出畢業完成感
+- [x] Dashboard 可以支撐「課程成效不能只看報名人數」的說法
+- [x] Dashboard 可以支撐「要看學員是否開始學、是否跟上章節、是否完成作品」的說法
+- [x] Dashboard 可以回扣 Spec、US、Build Sprint 的學習旅程
+- [x] Dashboard 可以作為 C-1 影片的收束畫面
+- [x] 結尾可以帶出畢業完成感
+
+#### 驗收說明
+
+**整體結論**：PASS ✅
+
+> 首頁 `CourseClosingSection` 含三問題、旅程回扣、展示路徑（含列表篩選示範）與「恭喜完成 Build Sprint」收束文案。
 
 **依賴關係**：
 - US-01～US-11（至少 Sprint 1–3 主路徑完成）

@@ -5,6 +5,7 @@ import { KpiGrid } from "@/components/dashboard/KpiGrid";
 import { ProjectStatusChart } from "@/components/dashboard/ProjectStatusChart";
 import { ReportSummarySection } from "@/components/dashboard/ReportSummarySection";
 import { DataSourceRoadmapSection } from "@/components/dashboard/DataSourceRoadmapSection";
+import { CourseClosingSection } from "@/components/dashboard/CourseClosingSection";
 import { mockStudents } from "@/lib/data/mock-students";
 import { computeChapterProgress } from "@/lib/metrics/chapter-progress";
 import { computeKpis } from "@/lib/metrics/kpi";
@@ -71,10 +72,7 @@ export function DashboardPage() {
 
       <DataSourceRoadmapSection />
 
-      <footer className="rounded-xl border border-border bg-card px-5 py-4 text-[12.5px] leading-relaxed text-on-background-muted">
-        <b className="text-on-background">教學展示重點：</b>
-        首頁先回答三個問題──有沒有開始學、完成到哪裡、有沒有做出作品；KPI、章節進度與作品狀態皆來自同一組假資料計算；「Demo／假資料版」標示清楚可見，避免觀眾誤以為已完成真實資料串接。
-      </footer>
+      <CourseClosingSection />
     </main>
   );
 }
