@@ -4,6 +4,7 @@ import { ChapterProgressChart } from "@/components/dashboard/ChapterProgressChar
 import { KpiGrid } from "@/components/dashboard/KpiGrid";
 import { ProjectStatusChart } from "@/components/dashboard/ProjectStatusChart";
 import { ReportSummarySection } from "@/components/dashboard/ReportSummarySection";
+import { DataSourceRoadmapSection } from "@/components/dashboard/DataSourceRoadmapSection";
 import { mockStudents } from "@/lib/data/mock-students";
 import { computeChapterProgress } from "@/lib/metrics/chapter-progress";
 import { computeKpis } from "@/lib/metrics/kpi";
@@ -67,6 +68,8 @@ export function DashboardPage() {
           </Link>
         </div>
       </section>
+
+      <DataSourceRoadmapSection />
 
       <footer className="rounded-xl border border-border bg-card px-5 py-4 text-[12.5px] leading-relaxed text-on-background-muted">
         <b className="text-on-background">教學展示重點：</b>
