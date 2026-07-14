@@ -26,5 +26,11 @@
 **優先級**：P0
 **相關功能**：Sprint 1｜KPI
 
+**設計稿來源**：
+- Pencil：[`designs/dashboard-screen-1.pen`](../../designs/dashboard-screen-1.pen)
+- HTML 參考：[`docs/design/ref/dashboard-screen-1.html`](../design/ref/dashboard-screen-1.html)
+- 對應區塊：Desktop `KPI Grid`（總學員數／已開始學習／平均完成進度／作品完成率）；Mobile `KPI 2x2`
+- 實作約束：四張 KPI 卡片的標籤、數值層級與卡片樣式對齊設計稿；數字由假資料計算，不自行增減 KPI 種類（課程完成率若另顯示，須對齊 Spec §15／§12，勿改動既有四卡版面結構）。
+
 **備註**：
 - 回答「學員目前整體有沒有跟上課程？」。與 Spec KPI 卡片「作品完成率」並列時，定義見 docs/spec.md §15。

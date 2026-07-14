@@ -2,7 +2,8 @@
 
 > 來源：Notion《課程學員數據儀表板｜Build Sprint》  
 > 對應 Spec：[`docs/spec.md`](../spec.md)  
-> 對應 US：[`docs/user-stories/`](../user-stories/)
+> 對應 US：[`docs/user-stories/`](../user-stories/)  
+> 設計稿：[`designs/`](../../designs/)（對照見 [`docs/user-stories/README.md`](../user-stories/README.md)#設計稿--us-對照）
 
 ## Sprint 規劃總覽
 

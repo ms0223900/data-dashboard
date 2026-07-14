@@ -24,5 +24,11 @@
 **優先級**：P0
 **相關功能**：Sprint 3｜課程總結展示
 
+**設計稿來源**：
+- 首頁收束文案：[`designs/dashboard-screen-1.pen`](../../designs/dashboard-screen-1.pen) → `教學展示重點`
+- 圖表解讀／教學說明：[`designs/dashboard-screen-2.pen`](../../designs/dashboard-screen-2.pen) → `資料解讀提示`、`作品完成面板` teaching
+- HTML 參考：[`dashboard-screen-1.html`](../design/ref/dashboard-screen-1.html)、[`dashboard-screen-2.html`](../design/ref/dashboard-screen-2.html)
+- 實作約束：收束敘事須回扣「開始學／跟上章節／做出作品」與 Spec→US→Build Sprint 旅程；展示路徑對齊三份設計稿畫面順序（總覽 → 圖表解讀 → 列表篩選）。
+
 **備註**：
 - 同時是產品案例與課程收束工具。

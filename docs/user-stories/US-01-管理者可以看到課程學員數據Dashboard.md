@@ -27,5 +27,11 @@
 **優先級**：P0
 **相關功能**：Sprint 1｜基礎 Dashboard
 
+**設計稿來源**：
+- Pencil：[`designs/dashboard-screen-1.pen`](../../designs/dashboard-screen-1.pen)
+- HTML 參考：[`docs/design/ref/dashboard-screen-1.html`](../design/ref/dashboard-screen-1.html)
+- 對應畫面：`01 Dashboard 首頁｜Desktop`、`05 Dashboard｜Mobile 390`
+- 實作約束：首頁區塊順序與層級（Header／KPI／圖表列／摘要＋列表入口／教學展示重點）以設計稿為準；須含「Demo／假資料版」標示與 Mock data 狀態列。
+
 **備註**：
 - 這是整個 MVP 的入口，先確保畫面能承載後續數據區塊。

@@ -3,8 +3,26 @@
 以假資料版 Dashboard 驗證學習成效指標、章節／作品分布與篩選互動，並支援 C-1 課程收束展示。
 
 來源：Notion《課程學員數據儀表板｜US 設計》  
+設計筆記：Notion《[課程學員數據儀表板｜設計稿](https://app.notion.com/p/penguin-cho/f1c4aefde55747948eb958014798f33f)》（資訊架構、畫面 1～5、US／Sprint 對照）  
 產品 Spec：[`docs/spec.md`](../spec.md)  
-Build Sprint：[`docs/build-sprint/`](../build-sprint/)
+Build Sprint：[`docs/build-sprint/`](../build-sprint/)  
+設計稿（Pencil）：[`designs/`](../../designs/)｜HTML 參考：[`docs/design/ref/`](../design/ref/)
+
+## 設計稿 ↔ US 對照
+
+實作 MVP（US-01～US-12）時以對應 Pencil 為準，避免自行發明版面。畫面定義與優先級以 Notion 設計筆記為準；已出 Pencil 的畫面以 `.pen` 為實作依據。
+
+| 狀態 | 畫面（Notion） | 本地設計稿 | 主要對應 US |
+| --- | --- | --- | --- |
+| ✅ 已有 | 畫面 1｜Dashboard 首頁總覽 | [`dashboard-screen-1.pen`](../../designs/dashboard-screen-1.pen) | US-01、US-03、US-04／05（首頁精簡）、US-10（首頁摘要卡）、US-12 |
+| ✅ 已有 | 畫面 2｜章節進度與作品完成狀態 | [`dashboard-screen-2.pen`](../../designs/dashboard-screen-2.pen) | US-04、US-05、US-12 |
+| ✅ 已有 | 畫面 3｜學員列表與互動篩選 | [`dashboard-screen-3.pen`](../../designs/dashboard-screen-3.pen) | US-06、US-07、US-08、US-09 |
+| ⏳ 待補 | 畫面 4｜課程學習成效摘要／報表展示區 | 尚無獨立 `.pen`（首頁僅有精簡「課程學習成效摘要」） | US-10、US-12 |
+| ⏳ 待補 | 畫面 5｜後續資料串接規劃 | 尚無獨立 `.pen` | US-11（延伸參考 US-13／14，非本 MVP 實作） |
+
+- **US-02**：無 UI 稿；假資料須讓上述畫面數字／列表可對齊。
+- **畫面 4／5 待補**：Notion 列為 P1（補足展示與課程收束），不阻塞 P0（首頁＋列表＋RWD）。補出 `dashboard-screen-4.pen`／`dashboard-screen-5.pen` 後，更新本表與 US-10／11／12 的「設計稿來源」。
+- **補稿前暫規**：US-10／12 可對齊 screen-1 摘要區＋Notion 畫面 4 文案；US-11 依 Spec §9.1／§10 Flow 3 與 Notion 畫面 5 文案實作。
 
 ## US 一覽表
 
