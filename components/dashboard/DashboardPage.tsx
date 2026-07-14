@@ -1,38 +1,15 @@
+import { ChapterProgressChart } from "@/components/dashboard/ChapterProgressChart";
+import { KpiGrid } from "@/components/dashboard/KpiGrid";
+import { ProjectStatusChart } from "@/components/dashboard/ProjectStatusChart";
 import { mockStudents } from "@/lib/data/mock-students";
 import { computeChapterProgress } from "@/lib/metrics/chapter-progress";
 import { computeKpis } from "@/lib/metrics/kpi";
 import { computeProjectStatusSummary } from "@/lib/metrics/project-status";
 
-const PROJECT_STATUS_DOT: Record<string, string> = {
-  "Not started": "bg-on-background-muted",
-  "Build Sprint": "bg-secondary",
-  "MVP completed": "bg-primary",
-  Published: "bg-success",
-};
-
 export function DashboardPage() {
   const kpis = computeKpis(mockStudents);
   const chapterProgress = computeChapterProgress(mockStudents);
   const projectStatusSummary = computeProjectStatusSummary(mockStudents);
-
-  const kpiCards = [
-    { label: "總學員數", value: String(kpis.totalStudents), valueClass: "" },
-    {
-      label: "已開始學習",
-      value: String(kpis.startedLearningCount),
-      valueClass: "text-primary",
-    },
-    {
-      label: "平均完成進度",
-      value: `${kpis.averageProgressPercent}%`,
-      valueClass: "text-primary",
-    },
-    {
-      label: "作品完成率",
-      value: `${kpis.projectCompletionRate}%`,
-      valueClass: "text-success",
-    },
-  ] as const;
 
   return (
     <main className="mx-auto min-h-screen max-w-[1120px] px-6 py-8 pb-12">
@@ -53,101 +30,11 @@ export function DashboardPage() {
         </p>
       </header>
 
-      <section
-        aria-label="KPI 卡片區"
-        className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4"
-      >
-        {kpiCards.map((card) => (
-          <div
-            key={card.label}
-            className="flex flex-col gap-1.5 rounded-xl border border-border bg-card px-4 py-[18px]"
-          >
-            <span className="text-[13px] font-medium text-on-background-muted">
-              {card.label}
-            </span>
-            <span
-              className={`text-[30px] font-bold tracking-tight text-on-background ${card.valueClass}`}
-            >
-              {card.value}
-            </span>
-          </div>
-        ))}
-      </section>
-
-      <p className="mb-4 text-[13px] text-on-background-muted" aria-label="課程完成率">
-        課程完成率（完課／總學員）：
-        <b className="text-on-background">{kpis.courseCompletionRate}%</b>
-        <span className="text-on-background-subtle">
-          {" "}
-          — Spec §15：四卡對齊設計稿「作品完成率」，課程完成率另列於此
-        </span>
-      </p>
+      <KpiGrid kpis={kpis} />
 
       <section className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-[1.3fr_1fr]">
-        <div
-          aria-label="章節進度圖表"
-          className="rounded-xl border border-border bg-card p-5"
-        >
-          <h2 className="mb-4 text-[15px] font-bold text-on-background">
-            章節進度分布
-          </h2>
-          <div className="flex flex-col gap-3">
-            {chapterProgress.map((chapter) => (
-              <div
-                key={chapter.chapterId}
-                className="grid grid-cols-[84px_1fr_40px] items-center gap-2.5 md:grid-cols-[96px_1fr_44px]"
-              >
-                <span className="truncate text-[13px] text-on-background">
-                  {chapter.chapterName}
-                </span>
-                <div className="h-2.5 overflow-hidden rounded-full bg-background-alt">
-                  <div
-                    className="h-full rounded-full bg-primary"
-                    style={{ width: `${chapter.completionRate}%` }}
-                    aria-hidden
-                  />
-                </div>
-                <span className="text-right text-[13px] font-semibold text-on-background">
-                  {chapter.completionRate}%
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div
-          aria-label="作品完成狀態圖表"
-          className="rounded-xl border border-border bg-card p-5"
-        >
-          <h2 className="mb-4 text-[15px] font-bold text-on-background">
-            作品完成狀態
-          </h2>
-          <div>
-            {projectStatusSummary.map((row, index) => (
-              <div
-                key={row.status}
-                className={`flex items-center justify-between py-2.5 ${
-                  index < projectStatusSummary.length - 1
-                    ? "border-b border-border"
-                    : "pb-0"
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <span
-                    className={`h-2 w-2 shrink-0 rounded-full ${PROJECT_STATUS_DOT[row.status]}`}
-                    aria-hidden
-                  />
-                  <span className="text-[13.5px] text-on-background">
-                    {row.label}
-                  </span>
-                </div>
-                <span className="text-sm font-bold text-on-background">
-                  {row.count}（{row.percentage}%）
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ChapterProgressChart chapters={chapterProgress} />
+        <ProjectStatusChart rows={projectStatusSummary} />
       </section>
 
       <section className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
