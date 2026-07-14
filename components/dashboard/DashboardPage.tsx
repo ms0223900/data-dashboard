@@ -1,17 +1,19 @@
 import { mockStudents } from "@/lib/data/mock-students";
 import { computeChapterProgress } from "@/lib/metrics/chapter-progress";
 import { computeKpis } from "@/lib/metrics/kpi";
+import { computeProjectStatusSummary } from "@/lib/metrics/project-status";
 
-const PROJECT_STATUS_ROWS: { name: string; dotClass: string }[] = [
-  { name: "尚未開始", dotClass: "bg-on-background-muted" },
-  { name: "Build Sprint 中", dotClass: "bg-secondary" },
-  { name: "已完成 MVP", dotClass: "bg-primary" },
-  { name: "已發布", dotClass: "bg-success" },
-];
+const PROJECT_STATUS_DOT: Record<string, string> = {
+  "Not started": "bg-on-background-muted",
+  "Build Sprint": "bg-secondary",
+  "MVP completed": "bg-primary",
+  Published: "bg-success",
+};
 
 export function DashboardPage() {
   const kpis = computeKpis(mockStudents);
   const chapterProgress = computeChapterProgress(mockStudents);
+  const projectStatusSummary = computeProjectStatusSummary(mockStudents);
 
   const kpiCards = [
     { label: "總學員數", value: String(kpis.totalStudents), valueClass: "" },
@@ -121,26 +123,26 @@ export function DashboardPage() {
             作品完成狀態
           </h2>
           <div>
-            {PROJECT_STATUS_ROWS.map((status, index) => (
+            {projectStatusSummary.map((row, index) => (
               <div
-                key={status.name}
+                key={row.status}
                 className={`flex items-center justify-between py-2.5 ${
-                  index < PROJECT_STATUS_ROWS.length - 1
+                  index < projectStatusSummary.length - 1
                     ? "border-b border-border"
                     : "pb-0"
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <span
-                    className={`h-2 w-2 shrink-0 rounded-full ${status.dotClass}`}
+                    className={`h-2 w-2 shrink-0 rounded-full ${PROJECT_STATUS_DOT[row.status]}`}
                     aria-hidden
                   />
                   <span className="text-[13.5px] text-on-background">
-                    {status.name}
+                    {row.label}
                   </span>
                 </div>
-                <span className="text-sm font-bold text-on-background-muted">
-                  —
+                <span className="text-sm font-bold text-on-background">
+                  {row.count}（{row.percentage}%）
                 </span>
               </div>
             ))}
