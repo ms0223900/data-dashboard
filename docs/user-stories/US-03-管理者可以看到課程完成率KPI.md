@@ -13,12 +13,72 @@
 - 數字與假資料一致；除以 0 安全
 
 **驗收條件**：
-- [ ] KPI 顯示總學員數
-- [ ] KPI 顯示已開始學習人數
-- [ ] KPI 顯示平均完成進度
-- [ ] KPI 顯示課程完成率
-- [ ] 指標數字由假資料計算而來
-- [ ] 避免除以 0
+- [x] KPI 顯示總學員數
+- [x] KPI 顯示已開始學習人數
+- [x] KPI 顯示平均完成進度
+- [x] KPI 顯示課程完成率
+- [x] 指標數字由假資料計算而來
+- [x] 避免除以 0
+
+#### 驗收說明
+
+**整體結論**：PASS ✅
+
+> KPI 由 `computeKpis(mockStudents)` 計算；四卡對齊設計稿（含作品完成率），課程完成率另列於 KPI 區下方與摘要（Spec §15 未決之落地）。
+
+---
+
+**AC-1：KPI 顯示總學員數**
+
+狀態：✅ 通過
+
+- `lib/metrics/kpi.ts` 的 `computeKpis()` 回傳 `totalStudents`
+- `DashboardPage.tsx` KPI 第一卡顯示該值
+
+---
+
+**AC-2：KPI 顯示已開始學習人數**
+
+狀態：✅ 通過
+
+- `startedLearningCount` = `learningStatus !== "Not started"` 人數
+- 第二張 KPI 卡顯示
+
+---
+
+**AC-3：KPI 顯示平均完成進度**
+
+狀態：✅ 通過
+
+- `averageProgressPercent` = 各學員 `progressPercent` 平均（四捨五入）
+- 第三張 KPI 卡顯示為百分比
+
+---
+
+**AC-4：KPI 顯示課程完成率**
+
+狀態：✅ 通過
+
+- `courseCompletionRate` = `Completed course`／總學員
+- 顯示於 KPI 區下方 `aria-label="課程完成率"` 與摘要列表（四卡結構維持設計稿「作品完成率」）
+
+---
+
+**AC-5：指標數字由假資料計算而來**
+
+狀態：✅ 通過
+
+- `DashboardPage` 呼叫 `computeKpis(mockStudents)`，來源為 `lib/data/mock-students.ts`
+
+---
+
+**AC-6：避免除以 0**
+
+狀態：✅ 通過
+
+- `computeKpis` 在 `totalStudents === 0` 時回傳全 0；`safeRate` 分母為 0 時回傳 0
+
+---
 
 **依賴關係**：
 - US-02；版面容器建議 US-01

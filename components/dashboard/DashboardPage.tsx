@@ -1,14 +1,8 @@
 import { mockStudents } from "@/lib/data/mock-students";
+import { computeKpis } from "@/lib/metrics/kpi";
 import { CHAPTER_NAMES } from "@/lib/types/student";
 
-const KPI_LABELS = [
-  "總學員數",
-  "已開始學習",
-  "平均完成進度",
-  "作品完成率",
-] as const;
-
-const PROJECT_STATUSES: { name: string; dotClass: string }[] = [
+const PROJECT_STATUS_ROWS: { name: string; dotClass: string }[] = [
   { name: "尚未開始", dotClass: "bg-on-background-muted" },
   { name: "Build Sprint 中", dotClass: "bg-secondary" },
   { name: "已完成 MVP", dotClass: "bg-primary" },
@@ -16,6 +10,27 @@ const PROJECT_STATUSES: { name: string; dotClass: string }[] = [
 ];
 
 export function DashboardPage() {
+  const kpis = computeKpis(mockStudents);
+
+  const kpiCards = [
+    { label: "總學員數", value: String(kpis.totalStudents), valueClass: "" },
+    {
+      label: "已開始學習",
+      value: String(kpis.startedLearningCount),
+      valueClass: "text-primary",
+    },
+    {
+      label: "平均完成進度",
+      value: `${kpis.averageProgressPercent}%`,
+      valueClass: "text-primary",
+    },
+    {
+      label: "作品完成率",
+      value: `${kpis.projectCompletionRate}%`,
+      valueClass: "text-success",
+    },
+  ] as const;
+
   return (
     <main className="mx-auto min-h-screen max-w-[1120px] px-6 py-8 pb-12">
       <header className="mb-7 flex flex-col gap-2">
@@ -31,8 +46,7 @@ export function DashboardPage() {
           觀察學員是否跟上課程，並完成自己的 MVP
         </p>
         <p className="m-0 text-[13px] text-on-background-muted">
-          資料狀態：Mock data（{mockStudents.length}{" "}
-          筆）｜KPI／圖表計算待接 US-03～05
+          資料狀態：Mock data（{kpis.totalStudents} 筆）｜最後更新：展示用假資料
         </p>
       </header>
 
@@ -40,20 +54,31 @@ export function DashboardPage() {
         aria-label="KPI 卡片區"
         className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4"
       >
-        {KPI_LABELS.map((label) => (
+        {kpiCards.map((card) => (
           <div
-            key={label}
+            key={card.label}
             className="flex flex-col gap-1.5 rounded-xl border border-border bg-card px-4 py-[18px]"
           >
             <span className="text-[13px] font-medium text-on-background-muted">
-              {label}
+              {card.label}
             </span>
-            <span className="text-[30px] font-bold tracking-tight text-on-background">
-              —
+            <span
+              className={`text-[30px] font-bold tracking-tight text-on-background ${card.valueClass}`}
+            >
+              {card.value}
             </span>
           </div>
         ))}
       </section>
+
+      <p className="mb-4 text-[13px] text-on-background-muted" aria-label="課程完成率">
+        課程完成率（完課／總學員）：
+        <b className="text-on-background">{kpis.courseCompletionRate}%</b>
+        <span className="text-on-background-subtle">
+          {" "}
+          — Spec §15：四卡對齊設計稿「作品完成率」，課程完成率另列於此
+        </span>
+      </p>
 
       <section className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-[1.3fr_1fr]">
         <div
@@ -94,11 +119,11 @@ export function DashboardPage() {
             作品完成狀態
           </h2>
           <div>
-            {PROJECT_STATUSES.map((status, index) => (
+            {PROJECT_STATUS_ROWS.map((status, index) => (
               <div
                 key={status.name}
                 className={`flex items-center justify-between py-2.5 ${
-                  index < PROJECT_STATUSES.length - 1
+                  index < PROJECT_STATUS_ROWS.length - 1
                     ? "border-b border-border"
                     : "pb-0"
                 }`}
@@ -126,9 +151,23 @@ export function DashboardPage() {
           <h2 className="mb-4 text-[15px] font-bold text-on-background">
             課程學習成效摘要
           </h2>
-          <p className="m-0 text-[13.5px] leading-relaxed text-on-background-muted">
-            摘要數字將由假資料計算後填入（US-03／US-10）。
-          </p>
+          <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
+            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary">
+              已開始學習：
+              <b>
+                {kpis.startedLearningCount}／{kpis.totalStudents} 人
+              </b>
+            </li>
+            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary">
+              平均完成進度：<b>{kpis.averageProgressPercent}%</b>
+            </li>
+            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary">
+              課程完成率：<b>{kpis.courseCompletionRate}%</b>
+            </li>
+            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-secondary">
+              作品完成率：<b>{kpis.projectCompletionRate}%</b>
+            </li>
+          </ul>
         </div>
 
         <div
@@ -143,7 +182,7 @@ export function DashboardPage() {
               從整體數字回到個別學員，篩選學習狀態、作品狀態與完成進度。
             </p>
           </div>
-          <span className="inline-flex w-fit min-h-11 items-center justify-center rounded-lg bg-primary px-[18px] py-[11px] text-sm font-semibold text-white">
+          <span className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg bg-primary px-[18px] py-[11px] text-sm font-semibold text-white">
             查看與篩選學員 →
           </span>
         </div>
