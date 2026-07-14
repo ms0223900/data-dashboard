@@ -51,11 +51,11 @@
 
 #### 2. 建立假資料
 
-- [ ] 建立至少 20 筆學員假資料
-- [ ] 每筆包含：`id`, `name`, `email`, `startedAt`, `lastActiveAt`, `progressPercent`, `currentChapter`, `learningStatus`, `projectStatus`, `submittedProjectUrl`
-- [ ] 確保狀態有分布，不要全部一樣
-- [ ] 不使用真實個資
-- [ ] 假資料集中管理，方便後續替換
+- [x] 建立至少 20 筆學員假資料
+- [x] 每筆包含：`id`, `name`, `email`, `startedAt`, `lastActiveAt`, `progressPercent`, `currentChapter`, `learningStatus`, `projectStatus`, `submittedProjectUrl`
+- [x] 確保狀態有分布，不要全部一樣
+- [x] 不使用真實個資
+- [x] 假資料集中管理，方便後續替換
 
 #### 3. 建立 KPI 計算
 

@@ -1,17 +1,11 @@
+import { mockStudents } from "@/lib/data/mock-students";
+import { CHAPTER_NAMES } from "@/lib/types/student";
+
 const KPI_LABELS = [
   "總學員數",
   "已開始學習",
   "平均完成進度",
   "作品完成率",
-] as const;
-
-const CHAPTERS = [
-  "想法收斂",
-  "Spec",
-  "User Stories",
-  "Build Sprint",
-  "驗收與修正",
-  "發布／延伸應用",
 ] as const;
 
 const PROJECT_STATUSES: { name: string; dotClass: string }[] = [
@@ -37,7 +31,8 @@ export function DashboardPage() {
           觀察學員是否跟上課程，並完成自己的 MVP
         </p>
         <p className="m-0 text-[13px] text-on-background-muted">
-          資料狀態：Mock data｜數值待接假資料（US-02）
+          資料狀態：Mock data（{mockStudents.length}{" "}
+          筆）｜KPI／圖表計算待接 US-03～05
         </p>
       </header>
 
@@ -69,7 +64,7 @@ export function DashboardPage() {
             章節進度分布
           </h2>
           <div className="flex flex-col gap-3">
-            {CHAPTERS.map((chapter) => (
+            {CHAPTER_NAMES.map((chapter) => (
               <div
                 key={chapter}
                 className="grid grid-cols-[84px_1fr_40px] items-center gap-2.5 md:grid-cols-[96px_1fr_44px]"
