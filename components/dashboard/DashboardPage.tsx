@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChapterProgressChart } from "@/components/dashboard/ChapterProgressChart";
 import { KpiGrid } from "@/components/dashboard/KpiGrid";
 import { ProjectStatusChart } from "@/components/dashboard/ProjectStatusChart";
+import { ReportSummarySection } from "@/components/dashboard/ReportSummarySection";
 import { mockStudents } from "@/lib/data/mock-students";
 import { computeChapterProgress } from "@/lib/metrics/chapter-progress";
 import { computeKpis } from "@/lib/metrics/kpi";
@@ -40,28 +41,11 @@ export function DashboardPage() {
       </section>
 
       <section className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="rounded-xl border border-border bg-card p-5">
-          <h2 className="mb-4 text-[15px] font-bold text-on-background">
-            課程學習成效摘要
-          </h2>
-          <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
-            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary">
-              已開始學習：
-              <b>
-                {kpis.startedLearningCount}／{kpis.totalStudents} 人
-              </b>
-            </li>
-            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary">
-              平均完成進度：<b>{kpis.averageProgressPercent}%</b>
-            </li>
-            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary">
-              課程完成率：<b>{kpis.courseCompletionRate}%</b>
-            </li>
-            <li className="relative pl-3.5 text-[13.5px] text-on-background before:absolute before:top-[7px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-secondary">
-              作品完成率：<b>{kpis.projectCompletionRate}%</b>
-            </li>
-          </ul>
-        </div>
+        <ReportSummarySection
+          kpis={kpis}
+          chapters={chapterProgress}
+          projectStatusSummary={projectStatusSummary}
+        />
 
         <div
           aria-label="學員列表入口"
