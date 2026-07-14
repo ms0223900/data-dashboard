@@ -18,6 +18,16 @@ export const DEFAULT_STUDENT_FILTERS: StudentListFilters = {
   progressRange: "all",
 };
 
+export const PROGRESS_RANGE_OPTIONS: {
+  value: ProgressRangeId;
+  label: string;
+}[] = [
+  { value: "0-25", label: "0–25%" },
+  { value: "26-50", label: "26–50%" },
+  { value: "51-75", label: "51–75%" },
+  { value: "76-100", label: "76–100%" },
+];
+
 export function progressRangeId(
   progressPercent: number,
 ): ProgressRangeId {
