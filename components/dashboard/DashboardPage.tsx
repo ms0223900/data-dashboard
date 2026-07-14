@@ -1,6 +1,6 @@
 import { mockStudents } from "@/lib/data/mock-students";
+import { computeChapterProgress } from "@/lib/metrics/chapter-progress";
 import { computeKpis } from "@/lib/metrics/kpi";
-import { CHAPTER_NAMES } from "@/lib/types/student";
 
 const PROJECT_STATUS_ROWS: { name: string; dotClass: string }[] = [
   { name: "尚未開始", dotClass: "bg-on-background-muted" },
@@ -11,6 +11,7 @@ const PROJECT_STATUS_ROWS: { name: string; dotClass: string }[] = [
 
 export function DashboardPage() {
   const kpis = computeKpis(mockStudents);
+  const chapterProgress = computeChapterProgress(mockStudents);
 
   const kpiCards = [
     { label: "總學員數", value: String(kpis.totalStudents), valueClass: "" },
@@ -89,22 +90,23 @@ export function DashboardPage() {
             章節進度分布
           </h2>
           <div className="flex flex-col gap-3">
-            {CHAPTER_NAMES.map((chapter) => (
+            {chapterProgress.map((chapter) => (
               <div
-                key={chapter}
+                key={chapter.chapterId}
                 className="grid grid-cols-[84px_1fr_40px] items-center gap-2.5 md:grid-cols-[96px_1fr_44px]"
               >
                 <span className="truncate text-[13px] text-on-background">
-                  {chapter}
+                  {chapter.chapterName}
                 </span>
                 <div className="h-2.5 overflow-hidden rounded-full bg-background-alt">
                   <div
-                    className="h-full w-0 rounded-full bg-primary"
+                    className="h-full rounded-full bg-primary"
+                    style={{ width: `${chapter.completionRate}%` }}
                     aria-hidden
                   />
                 </div>
-                <span className="text-right text-[13px] font-semibold text-on-background-muted">
-                  —
+                <span className="text-right text-[13px] font-semibold text-on-background">
+                  {chapter.completionRate}%
                 </span>
               </div>
             ))}
