@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { ChapterProgressChart } from "@/components/dashboard/ChapterProgressChart";
 import { KpiGrid } from "@/components/dashboard/KpiGrid";
 import { ProjectStatusChart } from "@/components/dashboard/ProjectStatusChart";
@@ -73,9 +75,12 @@ export function DashboardPage() {
               從整體數字回到個別學員，篩選學習狀態、作品狀態與完成進度。
             </p>
           </div>
-          <span className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg bg-primary px-[18px] py-[11px] text-sm font-semibold text-white">
+          <Link
+            href="/students"
+            className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg bg-primary px-[18px] py-[11px] text-sm font-semibold text-white hover:bg-primary-hover"
+          >
             查看與篩選學員 →
-          </span>
+          </Link>
         </div>
       </section>
 

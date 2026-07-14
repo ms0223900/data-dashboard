@@ -1,16 +1,9 @@
+import { PROJECT_STATUS_LABELS } from "@/lib/labels/student-status";
 import {
   PROJECT_STATUSES,
-  type ProjectStatus,
   type ProjectStatusSummary,
   type Student,
 } from "@/lib/types/student";
-
-const PROJECT_STATUS_LABELS: Record<ProjectStatus, string> = {
-  "Not started": "尚未開始",
-  "Build Sprint": "Build Sprint 中",
-  "MVP completed": "已完成 MVP",
-  Published: "已發布",
-};
 
 export function computeProjectStatusSummary(
   students: Student[],
