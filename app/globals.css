@@ -1,25 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f8fafc;
-  --color-background-alt: #f0f9ff;
-  --color-on-background: #0f172a;
-  --color-on-background-muted: #64748b;
-  --color-on-background-subtle: #94a3b8;
-  --color-primary: #0ea5e9;
-  --color-primary-hover: #0284c7;
-  --color-primary-disabled: #7dd3fc;
-  --color-secondary: #8b5cf6;
+  --color-background: #f9f8f7;
+  --color-background-alt: #f0efed;
+  --color-on-background: #2c2c2b;
+  --color-on-background-muted: #7d7a75;
+  --color-on-background-subtle: #9a9792;
+  --color-primary: #2783de;
+  --color-primary-hover: #1f6fc0;
+  --color-primary-soft: #e5f2fc;
+  --color-primary-disabled: #a8c8eb;
+  --color-secondary: #d5803b;
+  --color-secondary-soft: #fbebde;
   --color-card: #ffffff;
-  --color-card-muted: #f8fafc;
-  --color-border: #e2e8f0;
-  --color-error: #ef4444;
-  --color-error-bg: #fef2f2;
-  --color-success: #22c55e;
-  --color-success-bg: #f0fdf4;
+  --color-card-muted: #f9f8f7;
+  --color-border: #e6e5e3;
+  --color-error: #e56458;
+  --color-error-bg: #fce9e7;
+  --color-success: #46a171;
+  --color-success-bg: #e8f1ec;
   --color-success-foreground: #ffffff;
 }
 
 body {
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+    "Noto Sans TC", "Microsoft JhengHei", Helvetica, Arial, sans-serif;
 }

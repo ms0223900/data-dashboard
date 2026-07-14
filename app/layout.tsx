@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Data Dashboard | 數據儀表板",
-  description: "一站式數據儀表板，即時監控關鍵指標。",
+  title: "課程學員數據儀表板",
+  description: "以假資料驗證課程學員學習成效、章節進度與作品完成狀態。",
 };
 
 export default function RootLayout({
