@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { StudentTable } from "@/components/dashboard/StudentTable";
+import { StudentListClient } from "@/components/dashboard/StudentListClient";
 import { mockStudents } from "@/lib/data/mock-students";
 
 export function StudentsPage() {
@@ -28,13 +28,7 @@ export function StudentsPage() {
         </span>
       </header>
 
-      <p className="mb-3 text-[13px] text-on-background-muted">
-        目前顯示：
-        <strong className="text-on-background">{mockStudents.length}</strong>{" "}
-        位學員
-      </p>
-
-      <StudentTable students={mockStudents} />
+      <StudentListClient students={mockStudents} />
 
       <p className="mt-2.5 text-xs text-on-background-muted">
         第一版僅提供顯示與篩選，不包含學員備註編輯、權限管理或完整 CRM。
