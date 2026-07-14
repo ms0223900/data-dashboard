@@ -1,11 +1,10 @@
-import Link from "next/link";
-
 import { ChapterProgressChart } from "@/components/dashboard/ChapterProgressChart";
+import { CourseClosingSection } from "@/components/dashboard/CourseClosingSection";
+import { DataSourceRoadmapSection } from "@/components/dashboard/DataSourceRoadmapSection";
 import { KpiGrid } from "@/components/dashboard/KpiGrid";
 import { ProjectStatusChart } from "@/components/dashboard/ProjectStatusChart";
 import { ReportSummarySection } from "@/components/dashboard/ReportSummarySection";
-import { DataSourceRoadmapSection } from "@/components/dashboard/DataSourceRoadmapSection";
-import { CourseClosingSection } from "@/components/dashboard/CourseClosingSection";
+import { StudentListEntryCard } from "@/components/dashboard/StudentListEntryCard";
 import { mockStudents } from "@/lib/data/mock-students";
 import { computeChapterProgress } from "@/lib/metrics/chapter-progress";
 import { computeKpis } from "@/lib/metrics/kpi";
@@ -48,26 +47,7 @@ export function DashboardPage() {
           chapters={chapterProgress}
           projectStatusSummary={projectStatusSummary}
         />
-
-        <div
-          aria-label="學員列表入口"
-          className="flex flex-col justify-between rounded-xl border border-border bg-primary-soft p-5"
-        >
-          <div>
-            <h2 className="mb-2 text-[15px] font-bold text-on-background">
-              學員列表
-            </h2>
-            <p className="mb-4 text-[13px] leading-relaxed text-on-background-muted">
-              從整體數字回到個別學員，篩選學習狀態、作品狀態與完成進度。
-            </p>
-          </div>
-          <Link
-            href="/students"
-            className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg bg-primary px-[18px] py-[11px] text-sm font-semibold text-white hover:bg-primary-hover"
-          >
-            查看與篩選學員 →
-          </Link>
-        </div>
+        <StudentListEntryCard />
       </section>
 
       <DataSourceRoadmapSection />

@@ -86,7 +86,7 @@ export function CourseClosingSection() {
           （可試「已完成 MVP」）→ 報表摘要 → 本段收束。從想法到作品，你也走完了。
         </p>
         <p className="m-0 shrink-0 text-[13px] font-bold text-on-background">
-          恭喜完成 Build Sprint 🎓
+          恭喜完成 Build Sprint
         </p>
       </div>
     </section>
