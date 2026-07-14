@@ -1,13 +1,6 @@
 import Link from "next/link";
 
-const JOURNEY = [
-  "想法收斂",
-  "Spec",
-  "User Stories",
-  "Build Sprint",
-  "驗收與修正",
-  "發布／延伸",
-] as const;
+import { CHAPTER_NAMES } from "@/lib/types/student";
 
 export function CourseClosingSection() {
   return (
@@ -61,12 +54,12 @@ export function CourseClosingSection() {
           學習旅程回扣
         </p>
         <ol className="m-0 flex list-none flex-wrap items-center gap-1.5 p-0">
-          {JOURNEY.map((step, index) => (
+          {CHAPTER_NAMES.map((step, index) => (
             <li key={step} className="flex items-center gap-1.5">
               <span className="rounded-full bg-background-alt px-2.5 py-1 text-[12px] font-semibold text-on-background">
                 {step}
               </span>
-              {index < JOURNEY.length - 1 ? (
+              {index < CHAPTER_NAMES.length - 1 ? (
                 <span className="text-on-background-subtle" aria-hidden>
                   →
                 </span>
@@ -79,11 +72,15 @@ export function CourseClosingSection() {
       <div className="flex flex-col gap-3 rounded-lg border border-dashed border-border bg-card-muted px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="m-0 text-[12.5px] leading-relaxed text-on-background-muted">
           <b className="text-on-background">展示路徑：</b>
-          總覽 KPI → 章節／作品圖表 →{" "}
-          <Link href="/students" className="font-semibold text-primary hover:underline">
+          總覽 KPI → 章節／作品圖表 → 報表摘要 →{" "}
+          <Link
+            href="/students"
+            className="font-semibold text-primary hover:underline"
+          >
             學員列表篩選
           </Link>
-          （可試「已完成 MVP」）→ 報表摘要 → 本段收束。從想法到作品，你也走完了。
+          （可試「已完成 MVP」或「已發布」，對齊報表「已完成或發布」人數）→
+          返回總覽看本段收束。從想法到作品，你也走完了。
         </p>
         <p className="m-0 shrink-0 text-[13px] font-bold text-on-background">
           恭喜完成 Build Sprint
