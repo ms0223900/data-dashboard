@@ -63,3 +63,12 @@
 ## Current State｜現況
 
 - 目前專案剛完成 Scaffold 初始化，已預備好所有的專案骨架與模式切換腳本。
+
+## Cursor Cloud specific instructions
+
+環境（Node、npm 依賴）已由啟動時的 update script（`npm ci`）備妥。以下為在本 repo 開發時的非顯而易見注意事項；標準指令請見上方 `## Commands` 與 `README.md`。
+
+- **必要：`.env.local` 才能啟動任何頁面。** `middleware.ts` 幾乎匹配所有路由並呼叫 `assertSupabaseEnv()`（`lib/supabase/env.ts`）；若缺少 `NEXT_PUBLIC_SUPABASE_URL` 或 `NEXT_PUBLIC_SUPABASE_ANON_KEY`，會直接丟出「缺少 Supabase 環境變數」，導致 `npm run dev` / `npm run build` 下每個路由（包含首頁）都報錯。`.env.local` 被 gitignore，故每台新 VM 都需自行建立。
+- **MVP 使用假資料（見 `docs/spec.md`），無需真實 Supabase。** 上述兩個變數填任意非空字串即可通過中介層（`middleware.ts` 只呼叫 `auth.getUser()`，網路失敗不會丟例外）。若之後要接真實 DB，再換成真正的 Supabase 專案值。快速建立：`cp .env.example .env.local` 後把 `NEXT_PUBLIC_SUPABASE_URL`、`NEXT_PUBLIC_SUPABASE_ANON_KEY` 填為非空值（例如 `https://placeholder.supabase.co` 與任意字串）。
+- **Dev server**：`npm run dev`，預設 `http://localhost:3000`（另有 `/admin`）。目前兩頁皆為 scaffold placeholder。
+- **既有的 lint 警告**：`app/layout.tsx` 有 2 個 `@next/next` 字型相關 warning（非 error），`npm run lint` 仍以 0 errors 通過，屬預期。
